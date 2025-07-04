@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
   private baseUrl = 'https://tudominio.com/api';
 
+  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(private http: HttpClient) {}
 
   login(datos: any) {
