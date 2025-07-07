@@ -91,7 +91,7 @@ import { Component } from '@angular/core';
           async presentToast(message: string, color: string) {
             const toast = await this.toastController.create({
               message,
-              duration: 2000,
+              duration: 1000,
               color,
               position: 'top'
             });
