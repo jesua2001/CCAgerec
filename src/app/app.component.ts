@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular'; // Contiene IonApp e IonRouterOutl
   standalone: true,
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  imports: [IonicModule], // ❌ Elimina IonApp e IonRouterOutlet
+  imports: [IonicModule],
 })
 export class AppComponent {
   constructor() {
