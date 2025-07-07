@@ -5,7 +5,7 @@ import {
   IonHeader,
   IonInput,
   IonItem,
-  IonLabel,
+  IonLabel, IonRouterLink,
   IonTitle,
   IonToolbar
 } from "@ionic/angular/standalone";
@@ -24,7 +24,8 @@ import {FormsModule} from "@angular/forms";
     FormsModule,
     IonHeader,
     IonToolbar,
-    IonTitle
+    IonTitle,
+    IonRouterLink
   ]
 })
 export class LoginComponent  implements OnInit {
