@@ -1,24 +1,31 @@
 <ion-content>
   <div class="login-container">
     <ion-item>
-      <ion-label position="floating">Nombre: </ion-label>
-      <ion-input  type="text"></ion-input>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="nombre" name="nombre"></ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-label position="floating">Apellido</ion-label>
-      <ion-input  type="password"></ion-input>
+      <ion-label position="floating">Primer Apellido</ion-label>
+      <ion-input type="text" [(ngModel)]="apellido1" name="apellido1"></ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-label position="floating">Usuario</ion-label>
-      <ion-input  type="text"></ion-input>
+      <ion-label position="floating">Segundo Apellido</ion-label>
+      <ion-input type="text" [(ngModel)]="apellido2" name="apellido2"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Usuario (Email)</ion-label>
+      <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
+    </ion-item>
+
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input  type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
     </ion-item>
-    <ion-button expand="full" >Aceptar</ion-button>
+
+    <ion-button expand="full" (click)="onRegister()">Aceptar</ion-button>
     <ion-button expand="full" routerLink="/login">Volver al Login</ion-button>
   </div>
 </ion-content>
-
-
