@@ -84,7 +84,7 @@ import { Component } from '@angular/core';
                 } else {
                   this.presentToast('Error al registrar el usuario', 'danger');
                 }
-              }//
+              }
             });
           }
 
