@@ -1,6 +1,16 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+import { importProvidersFrom } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
+import { provideHttpClient } from '@angular/common/http'; // ✅ AÑADIR ESTO
 
-import { AppModule } from './app/app.module';
+import { AppComponent } from './app/app.component';
+import { AppRoutes } from './app/app.routes';
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(AppRoutes),
+    provideHttpClient(), // ✅ REGISTRA HttpClient
+    importProvidersFrom(IonicModule.forRoot())
+  ]
+});
