@@ -1,20 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import {IonHeader, IonTitle, IonToolbar} from "@ionic/angular/standalone";
+import { Component } from '@angular/core';
+import {
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonInput,
+  IonItem,
+  IonLabel,
+  IonTitle,
+  IonToolbar
+} from "@ionic/angular/standalone";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   imports: [
-    IonHeader,
-    IonTitle,
-    IonToolbar
+    IonContent,
+    IonButton,
+    IonInput,
+    IonItem,
+    IonLabel,
+    RouterLink
   ]
 })
-export class RegisterComponent  implements OnInit {
+export class RegisterComponent   {
 
-  constructor() { }
+  constructor() {
 
-  ngOnInit() {}
+  }
+
+
 
 }
