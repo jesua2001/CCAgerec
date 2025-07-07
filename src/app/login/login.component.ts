@@ -5,11 +5,12 @@ import {
   IonHeader,
   IonInput,
   IonItem,
-  IonLabel, IonRouterLink,
+  IonLabel,
   IonTitle,
   IonToolbar
 } from "@ionic/angular/standalone";
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router"; // Importa RouterModule
 
 @Component({
   selector: 'app-login',
@@ -25,10 +26,10 @@ import {FormsModule} from "@angular/forms";
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonRouterLink
+    RouterModule // Asegúrate de incluir RouterModule aquí
   ]
 })
-export class LoginComponent  implements OnInit {
+export class LoginComponent implements OnInit {
 
   constructor() { }
 
