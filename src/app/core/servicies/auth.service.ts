@@ -9,12 +9,14 @@ import { LoginRequest, LoginResponse } from '@models/user.model';
 })
 export class AuthService {
 
+  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(private http: HttpClient) {}
 
   login(data: LoginRequest): Observable<LoginResponse> {
     const formData = new FormData();
+    console.log('Login data:', data.email);
     formData.append('email', data.email);
-    formData.append('contraseña', data.contraseña);
+    formData.append('password', data.password);
 
     const params = new HttpParams()
       .set('action', 'loginUser')
