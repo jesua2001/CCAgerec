@@ -9,7 +9,6 @@ import {LoginRequest, LoginResponse, RegisterRequest} from '@models/user.model';
 })
 export class AuthService {
 
-  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(private http: HttpClient) {}
 
   login(data: LoginRequest): Observable<LoginResponse> {
