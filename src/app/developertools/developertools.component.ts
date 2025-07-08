@@ -13,10 +13,13 @@ import {
   IonSelectOption,
   IonText,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  IonSpinner, LoadingController
 } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthStateService } from '../core/servicies/auth-state.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-developer-panel',
@@ -35,7 +38,8 @@ import { Router } from '@angular/router';
     IonText,
     IonToolbar,
     IonTitle,
-    IonHeader
+    IonHeader,
+    IonSpinner
   ]
 })
 export class DeveloperPanelPage implements OnInit {
@@ -43,17 +47,34 @@ export class DeveloperPanelPage implements OnInit {
   id: number = 0;
   nuevoEmail: string = '';
   mensaje: string = '';
+  loading: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) {}
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private authState: AuthStateService,
+   private toastController: LoadingController
+  ) {}
 
   ngOnInit() {
     this.cargarUsuarios();
   }
 
   cargarUsuarios() {
+    this.loading = true;
     const params = new HttpParams().set('action', 'User');
     this.http.get<any[]>(`${environment.apiBase}/${environment.endpoints.user}`, { params })
-      .subscribe(data => this.usuarios = data);
+      .subscribe({
+        next: data => {
+          this.usuarios = data;
+          this.loading = false;
+        },
+        error: () => {
+          this.mensaje = 'Error cargando usuarios';
+          this.loading = false;
+        }
+      });
   }
 
   cambiarCorreo() {
@@ -62,11 +83,16 @@ export class DeveloperPanelPage implements OnInit {
       return;
     }
 
-    const token = localStorage.getItem('token');
+    //crear toast cargando
+
+
+    const token = this.authState.getToken();
     if (!token) {
       this.mensaje = 'No autenticado';
       return;
     }
+
+    this.loading = true;
 
     const formData = new FormData();
     formData.append('id', this.id.toString());
@@ -80,16 +106,19 @@ export class DeveloperPanelPage implements OnInit {
 
     this.http.post(`${environment.apiBase}/${environment.endpoints.user}`, formData, { headers, params })
       .subscribe({
-        next: (res: any) => this.mensaje = res.success || 'Correo actualizado correctamente',
-        error: (err) => this.mensaje = err.error?.description || 'Error al cambiar el correo'
+        next: (res: any) => {
+          this.mensaje = res.success || 'Correo actualizado correctamente';
+          this.loading = false;
+          this.cargarUsuarios();  // Recarga usuarios para reflejar el cambio
+        },
+        error: (err) => {
+          this.mensaje = err.error?.description || 'Error al cambiar el correo';
+          this.loading = false;
+        }
       });
   }
 
   loginComoUsuarioSeleccionado() {
-    console.log('idUsuario:', this.id);
-    console.log('usuarios:', this.usuarios);
-
-    // 🔧 Línea corregida: se usa this.id en lugar de this.idUsuario
     const usuario = this.usuarios.find(u => Number(u.id) === Number(this.id));
 
     if (!usuario) {
@@ -98,8 +127,21 @@ export class DeveloperPanelPage implements OnInit {
     }
 
     const token = this.generarTokenFalso(usuario);
-    localStorage.setItem('token', token);
-    this.router.navigate(['/home']);
+
+    this.authState.loginConToken(token);
+
+    this.router.navigate(['/home']).then(async () => {
+      // Forzar recarga completa de la página después de la navegación
+      const loading = await this.toastController.create({
+        message: 'Cargando...',
+        duration: 2000,
+        spinner: 'crescent',
+        cssClass: 'custom-loading',
+      });
+      await loading.present();
+
+      window.location.reload();
+    });
   }
 
   private generarTokenFalso(usuario: any): string {
