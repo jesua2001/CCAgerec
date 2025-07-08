@@ -5,7 +5,10 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-item>
+
+  <ion-spinner *ngIf="loading" name="crescent" class="spinner-center"></ion-spinner>
+
+  <ion-item *ngIf="!loading">
     <ion-label>Selecciona un usuario</ion-label>
     <ion-select [(ngModel)]="id">
       <ion-select-option *ngFor="let user of usuarios" [value]="user.id">
@@ -14,16 +17,16 @@
     </ion-select>
   </ion-item>
 
-  <ion-button expand="block" (click)="loginComoUsuarioSeleccionado()">
+  <ion-button expand="block" (click)="loginComoUsuarioSeleccionado()" [disabled]="loading">
     Login como usuario seleccionado
   </ion-button>
 
-  <ion-item>
+  <ion-item *ngIf="!loading">
     <ion-label position="floating">Nuevo correo</ion-label>
     <ion-input [(ngModel)]="nuevoEmail" type="email"></ion-input>
   </ion-item>
 
-  <ion-button expand="block" (click)="cambiarCorreo()">
+  <ion-button expand="block" (click)="cambiarCorreo()" [disabled]="loading">
     Cambiar correo
   </ion-button>
 
