@@ -1,8 +1,6 @@
 export interface LoginRequest {
   email: string;
   password: string;
-
-
 }
 
 export interface LoginResponse {
@@ -11,13 +9,12 @@ export interface LoginResponse {
   error?: string;
 }
 
-
 export interface RegisterRequest {
+  id?: number;
   email: string;
   password: string;
-  apellido1:string,
-  apellido2:string,
+  apellido1: string;
+  apellido2: string;
   isAdmin: boolean;
   nombre: string;
-
 }
