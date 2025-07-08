@@ -13,7 +13,6 @@ export class AuthService {
 
   login(data: LoginRequest): Observable<LoginResponse> {
     const formData = new FormData();
-    console.log('Login data:', data.email);
     formData.append('email', data.email);
     formData.append('password', data.password);
 
