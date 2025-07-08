@@ -11,9 +11,8 @@ import {
 } from "@ionic/angular/standalone";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { AuthService} from "../core/servicies/auth.service";
-import {LoginRequest, LoginResponse} from '@models/user.model';
-import { inject } from '@angular/core';
+import { AuthService } from "../core/servicies/auth.service";
+import { LoginRequest, LoginResponse } from '@models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -37,14 +36,9 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
 
+  constructor(private authService: AuthService, private router: Router) { }
 
-
-  // eslint-disable-next-line @angular-eslint/prefer-inject
-  constructor(private authService: AuthService, private router: Router) {
-  }
-
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onLogin() {
     const loginData: LoginRequest = {
@@ -55,18 +49,21 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginData).subscribe({
       next: (response: LoginResponse) => {
         if (response.token) {
+          // Guardamos token en localStorage
           localStorage.setItem('token', response.token);
-          this.router.navigate(['/home']); // Cambia la ruta según tu app
+          // Navegamos al home
+          this.router.navigate(['/home']);
         } else if (response.error) {
-          response.error;
+          alert('Error: ' + response.error);
         } else {
-          'Inicio de sesión fallido.';
+          alert('Inicio de sesión fallido.');
         }
       },
       error: (error) => {
-        error.error?.error || 'Ocurrió un error.';
+        alert('Error en la petición: ' + (error.error?.error || 'Ocurrió un error.'));
+        console.error(error);
       }
     });
-
   }
+
 }
