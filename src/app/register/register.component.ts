@@ -51,9 +51,6 @@ export class RegisterComponent {
       color: color, // Asegura que el color se pase correctamente
     });
     await toast.present();
-
-    console.log("Se mostró el toast: " + message);
-    console.log('Color del toast: ', color);
   }
   async presentToast(message: string, color: 'primary' | 'success' | 'danger' = 'primary') {
     const toast = await this.toastController.create({
@@ -86,7 +83,6 @@ export class RegisterComponent {
 
       },
       error: async (err) => {
-        console.error("Error del servidor:", err); // Para depuración
         const errorMessage = err.error?.error || 'Error desconocido';
         if (errorMessage === 'User Exists') {
           await this.presentToast('Registro exitoso', 'success');
