@@ -1,3 +1,7 @@
-<p>
-  home works!
-</p>
+<ion-content>
+  <div style="display: flex; justify-content: center; align-items: center; height: calc(100vh - 72px); flex-direction: column;">
+    <ion-button expand="block" (click)="consultar()">Consultar</ion-button>
+    <ion-button expand="block" *ngIf="isAdmin || isDeveloper" (click)="anadircaja()">Añadir</ion-button>
+    <ion-button expand="block" *ngIf="isDeveloper" (click)="abrirDeveloperTools()">Developer Tools</ion-button>
+  </div>
+</ion-content>
