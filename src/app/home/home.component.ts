@@ -36,11 +36,12 @@ export class HomeComponent implements OnInit {
   }
 
   consultar() {
-    console.log('Consultar');
+
+
   }
 
   anadircaja() {
-    console.log('Añadir');
+
   }
 
   developerLoginAsAdmin() {
