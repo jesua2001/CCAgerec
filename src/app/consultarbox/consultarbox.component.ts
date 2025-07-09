@@ -46,7 +46,6 @@ export class ConsultarboxComponent implements OnInit {
       },
       error: () => {
         this.mensajeError = 'No se pudo obtener la IP de la caja.';
-
         this.informationCaja = [];
       }
     });
