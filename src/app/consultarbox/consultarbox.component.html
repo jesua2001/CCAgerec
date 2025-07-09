@@ -2,16 +2,23 @@
 <ion-content>
   <div style="padding: 16px;">
     <ion-item>
-      <ion-label position="floating">Dirección IP</ion-label>
-      <ion-input [(ngModel)]="direccionIP" placeholder="Introduce la dirección IP"></ion-input>
+      <ion-label position="floating">Número de serie</ion-label>
+      <ion-input [(ngModel)]="numeroSerie" placeholder="Introduce el número de serie"></ion-input>
     </ion-item>
     <ion-button expand="block" (click)="consultarCaja()">Consultar</ion-button>
-    <div *ngIf="informacionCaja">
-      <h2>Información de la caja:</h2>
-      <pre>{{ informacionCaja | json }}</pre>
+    <div *ngIf="informationCaja.length === 0">
+      <p>Por favor introduce el numero de serie </p>
     </div>
+    <div *ngIf="informationCaja.length > 0">
+      <h2>Información de la caja:</h2>
+      <ul>
+        <li *ngFor="let caja of informationCaja">
+          IP: {{ caja.caneth }}<br>
+        </li>
+      </ul>
     <div *ngIf="mensajeError" style="color: red;">
       {{ mensajeError }}
     </div>
+  </div>
   </div>
 </ion-content>
