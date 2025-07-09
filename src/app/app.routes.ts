@@ -33,5 +33,9 @@
     {
       path:'anadircaja',
       loadComponent: () => import('./anadirbox/anadirbox.component').then(m => m.AnadirboxComponent)
+    },
+    {
+      path: 'modificarcaja',
+      loadComponent: () => import('./modificarcaja/modificarcaja.component').then(m => m.ModificarcajaComponent)
     }
   ];
