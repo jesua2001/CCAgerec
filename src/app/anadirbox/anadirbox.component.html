@@ -1,16 +1,113 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Cajas Conexión</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="floating">Certificado</ion-label>
-    <ion-input [(ngModel)]="nuevaCaja.certificado"></ion-input>
-  </ion-item>
+  <ion-title class="ion-text-center">
+    Por favor introduce los datos de la nueva caja
+  </ion-title>
 
-  <ion-button expand="block" (click)="crearCaja()">Crear Caja</ion-button>
+  <form class="mt-10 mb-10" (ngSubmit)="crearCaja()">
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Certificado</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.certificado" placeholder="Introduce el certificado" name="certificado" required></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">IP Interno</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.ipinterno" placeholder="Ej: 192.168.0.1" name="ipinterno"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">IP Red Máquina</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.ipredmaquina" placeholder="Ej: 10.0.0.2" name="ipredmaquina"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Máscara de Red</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.mascaradered" placeholder="Ej: 255.255.255.0" name="mascaradered"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Diagnóstico</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.diagnostico" placeholder="Ej: OK/ERROR" name="diagnostico"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Router</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.router" placeholder="Nombre del router" name="router"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Caneth</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.caneth" placeholder="Conexión CAN" name="caneth"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Referencia Agerec</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.referenciaagerec" placeholder="Código Agerec" name="referenciaagerec"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">SIM</ion-label>
+      <ion-input type="number" [(ngModel)]="nuevaCaja.sim" placeholder="Número de SIM" name="sim"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">PIN</ion-label>
+      <ion-input type="number" [(ngModel)]="nuevaCaja.pin" placeholder="Código PIN" name="pin"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">PUNK</ion-label>
+      <ion-input type="number" [(ngModel)]="nuevaCaja.punk" placeholder="Código PUK" name="punk"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Nº Serie</ion-label>
+      <ion-input type="number" [(ngModel)]="nuevaCaja.Nserie" placeholder="Número de serie" name="Nserie"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Número TLF</ion-label>
+      <ion-input type="number" [(ngModel)]="nuevaCaja.numerotlf" placeholder="Teléfono" name="numerotlf"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Roaming</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.roaming" placeholder="Roaming activo o no" name="roaming"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked"style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Última Verificación</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.ultimaverificacion" placeholder="Fecha última verificación" name="ultimaverificacion"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Sello Rojo</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.sellorojo" placeholder="Estado sello rojo" name="sellorojo"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Sello Azul</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.selloazul" placeholder="Estado sello azul" name="selloazul"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Localización</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.localizacion" placeholder="Ubicación física" name="localizacion"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">PIN Teltonika</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.pinteltonika" placeholder="Código PIN Teltonika" name="pinteltonika"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 24px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Datos</ion-label>
+      <ion-input [(ngModel)]="nuevaCaja.datos" placeholder="Datos de conexión" name="datos"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit">Crear Caja</ion-button>
+  </form>
 
   <ion-text color="primary" *ngIf="mensaje">
     <p>{{ mensaje }}</p>
