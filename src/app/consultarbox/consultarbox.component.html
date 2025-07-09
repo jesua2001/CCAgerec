@@ -1,3 +1,17 @@
-<app-header>
-
-</app-header>
+<app-header></app-header>
+<ion-content>
+  <div style="padding: 16px;">
+    <ion-item>
+      <ion-label position="floating">Dirección IP</ion-label>
+      <ion-input [(ngModel)]="direccionIP" placeholder="Introduce la dirección IP"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="consultarCaja()">Consultar</ion-button>
+    <div *ngIf="informacionCaja">
+      <h2>Información de la caja:</h2>
+      <pre>{{ informacionCaja | json }}</pre>
+    </div>
+    <div *ngIf="mensajeError" style="color: red;">
+      {{ mensajeError }}
+    </div>
+  </div>
+</ion-content>
