@@ -6,6 +6,7 @@ import { BoxObtener } from "../models/box.model";
 import {FormsModule} from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import {ToastController} from "@ionic/angular";
+import {TmplAstHostElement} from "@angular/compiler";
 
 @Component({
   selector: 'app-consultarbox',
@@ -39,8 +40,7 @@ export class ConsultarboxComponent implements OnInit {
 
   consultarCaja() {
     if (!this.numeroSerie.trim()) {
-      this.mensajeError = 'El número de serie no puede estar vacío.';
-      console.error("Error al obtener la IP de la caja: esto es si no hay datos ", this.numeroSerie);
+      this.mostrarToast("El número de serie es obligatorio.");
       return;
     }
 
