@@ -12,14 +12,16 @@ export class BoxService {
   constructor(private http: HttpClient) {
   }
 
-  getcaneth(data:BoxObtener) : Observable<BoxObtener>{
+  getcaneth(numeroSerie: string): Observable<BoxObtener[]> {
     const formData = new FormData();
-    formData.append('NSERIE', data.NSERIE);
+    formData.append('NSERIE', numeroSerie);
+
     const params = new HttpParams()
       .set('action', 'obtenercaja')
       .set('debug', '');
-    const url = `${environment.apiBase}/${environment.endpoints.caja}`;
-    return this.http.post<BoxObtener>(url, formData, { params });
 
+    const url = `${environment.apiBase}/${environment.endpoints.caja}`;
+    return this.http.post<BoxObtener[]>(url, formData, { params });
   }
+
 }
