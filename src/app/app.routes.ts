@@ -25,5 +25,9 @@
     {
       path: 'developer-tools',
       loadComponent: () => import('./developertools/developertools.component').then(m => m.DeveloperPanelPage)
+    },
+    {
+      path:'consultarbox',
+      loadComponent: () => import('./consultarbox/consultarbox.component').then(m => m.ConsultarboxComponent)
     }
   ];

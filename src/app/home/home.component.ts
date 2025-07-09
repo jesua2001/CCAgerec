@@ -6,6 +6,7 @@ import {
   IonButton,
 } from '@ionic/angular/standalone';
 import { Router } from "@angular/router";
+import {windows} from "rimraf";
 
 @Component({
   selector: 'app-home',
@@ -36,11 +37,11 @@ export class HomeComponent implements OnInit {
   }
 
   consultar() {
-    console.log('Consultar');
+  this.router.navigate(['/consultarbox']);
   }
 
   anadircaja() {
-    console.log('Añadir');
+
   }
 
   developerLoginAsAdmin() {
