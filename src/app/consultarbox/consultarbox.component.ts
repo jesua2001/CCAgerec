@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { IonButton, IonContent, IonInput, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { BoxService } from "../core/servicies/box.service";
-import { BoxObtener } from "../models/box.model";
+import { BoxObtener } from "@models/box.model";
 import {FormsModule} from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import {ToastController} from "@ionic/angular";
