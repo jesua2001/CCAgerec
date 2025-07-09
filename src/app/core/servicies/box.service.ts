@@ -27,11 +27,7 @@ export class BoxService {
 
   crearCaja(caja: BoxAnadir): Observable<BoxAnadir> {
     const formData = new FormData();
-    Object.entries(caja).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) {
-        formData.append(key, value.toString());
-      }
-    });
+    formData.append('data', JSON.stringify(caja)); // 👈 importante: mandar todo como JSON
 
     const params = new HttpParams()
       .set('action', 'anadirCaja')
@@ -40,5 +36,6 @@ export class BoxService {
     const url = `${environment.apiBase}/${environment.endpoints.caja}`;
     return this.http.post<BoxAnadir>(url, formData, { params });
   }
+
 
 }
