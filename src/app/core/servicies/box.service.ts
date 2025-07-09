@@ -1,8 +1,9 @@
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {BoxObtener} from "@models/box.model";
+import {BoxAnadir, BoxObtener} from "@models/box.model";
 import {Injectable} from "@angular/core";
 import {environment} from "@environments/environment";
+import * as url from "node:url";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,22 @@ export class BoxService {
 
     const url = `${environment.apiBase}/${environment.endpoints.caja}`;
     return this.http.post<BoxObtener[]>(url, formData, { params });
+  }
+
+  crearCaja(caja: BoxAnadir): Observable<BoxAnadir> {
+    const formData = new FormData();
+    Object.entries(caja).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        formData.append(key, value.toString());
+      }
+    });
+
+    const params = new HttpParams()
+      .set('action', 'addCaja')
+      .set('debug', '');
+
+    const url = `${environment.apiBase}/${environment.endpoints.caja}`;
+    return this.http.post<BoxAnadir>(url, formData, { params });
   }
 
 }
