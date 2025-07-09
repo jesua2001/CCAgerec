@@ -14,12 +14,15 @@ import {
 import { FormsModule } from '@angular/forms';
 import { BoxService } from '../core/servicies/box.service';
 import { BoxAnadir } from '../models/box.model';
+import { CommonModule } from '@angular/common';
+import {HeaderComponent} from "../header/header.component"; // AÑADE ESTA LÍNEA
 
 @Component({
   selector: 'app-anadirbox',
   templateUrl: './anadirbox.component.html',
   standalone: true,
   imports: [
+    CommonModule, // AÑADE ESTA LÍNEA AQUÍ
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -30,7 +33,8 @@ import { BoxAnadir } from '../models/box.model';
     FormsModule,
     IonButton,
     IonText,
-    IonList
+    IonList,
+    HeaderComponent
   ]
 })
 export class AnadirboxComponent implements OnInit {
