@@ -34,7 +34,7 @@ export class BoxService {
     });
 
     const params = new HttpParams()
-      .set('action', 'addCaja')
+      .set('action', 'anadirCaja')
       .set('debug', '');
 
     const url = `${environment.apiBase}/${environment.endpoints.caja}`;
