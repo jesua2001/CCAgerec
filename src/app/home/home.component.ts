@@ -41,26 +41,9 @@ export class HomeComponent implements OnInit {
   }
 
   anadircaja() {
-
+    this.router.navigate(['/anadircaja']);
   }
 
-  developerLoginAsAdmin() {
-    const token = this.generateFakeToken("admin@empresa.com");
-    localStorage.setItem('token', token);
-    this.loadRoles();
-  }
-
-  developerLoginAsUser() {
-    const token = this.generateFakeToken("usuario@empresa.com");
-    localStorage.setItem('token', token);
-    this.loadRoles();
-  }
-
-  developerLoginAsDeveloper() {
-    const token = this.generateFakeToken("developer@miapp.com");
-    localStorage.setItem('token', token);
-    this.loadRoles();
-  }
 
   private getRolesFromToken(token: string | null): { isAdmin: boolean; isDeveloper: boolean } {
     if (!token) return { isAdmin: false, isDeveloper: false };

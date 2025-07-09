@@ -29,5 +29,9 @@
     {
       path:'consultarbox',
       loadComponent: () => import('./consultarbox/consultarbox.component').then(m => m.ConsultarboxComponent)
+    },
+    {
+      path:'anadircaja',
+      loadComponent: () => import('./anadirbox/anadirbox.component').then(m => m.AnadirboxComponent)
     }
   ];
