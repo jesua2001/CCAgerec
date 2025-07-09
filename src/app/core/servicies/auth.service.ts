@@ -38,4 +38,37 @@ export class AuthService {
     return this.http.post<RegisterRequest>(url, formData, { params });
   }
 
+  logout(): void {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      console.warn('No hay token para cerrar sesión');
+      return;
+    }
+
+    const url = `${environment.apiBase}/${environment.endpoints.user}`;
+    const params = new HttpParams()
+      .set('action', 'logoutUser');
+
+    this.http.post<any>(url, {}, {
+      params,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).subscribe({
+      next: (response) => {
+        console.log(response?.success || 'Sesión cerrada');
+        localStorage.removeItem('token');
+        // Redirigir al login u otra vista
+        window.location.href = '/login'; // Cambia esto si usas Angular Router
+      },
+      error: (error) => {
+        console.error(error?.error?.error || 'Error al cerrar sesión');
+        localStorage.removeItem('token'); // Por seguridad, igual lo borramos
+        window.location.href = '/login';
+      }
+    });
+  }
+
+
 }
