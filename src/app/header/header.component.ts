@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IonHeader, IonIcon, IonToolbar} from "@ionic/angular/standalone";
+import {AuthService} from "../core/servicies/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,10 @@ import {IonHeader, IonIcon, IonToolbar} from "@ionic/angular/standalone";
 })
 export class HeaderComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {}
-
+  onLogout() {
+    this.authService.logout();
+  }
 }
