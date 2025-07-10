@@ -58,12 +58,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  private generateFakeToken(email: string): string {
-    const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
-    const payload = btoa(JSON.stringify({ data: { email } }));
-    const signature = btoa('firma-falsa'); // Para pruebas
-    return `${header}.${payload}.${signature}`;
-  }
+
 
   abrirDeveloperTools() {
     this.router.navigate(['/developer-tools']);
