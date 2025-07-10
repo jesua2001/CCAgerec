@@ -1,15 +1,30 @@
-<ion-header style="box-shadow: 0 2px 4px rgba(0,0,0,0.05); background: #fff;">
-          <ion-toolbar style="display: flex; align-items: center; justify-content: space-between; padding: 0 16px; min-height: 72px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-              <div style="display: flex; align-items: center;">
-                <img src="/assets/logo/61dc37ff-0049-40ad-8d47-b1b0039e4dfd.jpg" alt="Logo" style="height: 40px;" />
-              </div>
+<ion-header>
+  <ion-toolbar>
 
-              <!-- Iconos -->
-              <div style="display: flex; align-items: center; gap: 16px;">
-                <ion-icon name="exit-outline" style="font-size: 24px; color: #dc3545; cursor: pointer;" (click)="onLogout()"></ion-icon>
-              </div>
-            </div>
+    <!-- Logo a la izquierda -->
+    <ion-buttons slot="start">
+      <img src="/assets/logo/61dc37ff-0049-40ad-8d47-b1b0039e4dfd.jpg" alt="Logo" style="height: 40px;" />
+    </ion-buttons>
 
-          </ion-toolbar>
-        </ion-header>
+    <!-- Icono casa centrado visualmente -->
+    <ion-title *ngIf="isAdmin || isDeveloper">
+      <div style="width: 90%; text-align: center;">
+        <ion-icon
+          name="home-outline"
+          style="font-size: 20px; cursor: pointer;"
+          (click)="goToHome()">
+        </ion-icon>
+      </div>
+    </ion-title>
+
+    <!-- Botón de salir a la derecha -->
+    <ion-buttons slot="end">
+      <ion-icon
+        name="exit-outline"
+        style="font-size: 24px; color: #dc3545; cursor: pointer;"
+        (click)="onLogout()">
+      </ion-icon>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
