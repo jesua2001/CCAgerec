@@ -25,11 +25,6 @@
     <ion-label position="floating">Nuevo correo</ion-label>
     <ion-input [(ngModel)]="nuevoEmail" type="email"></ion-input>
   </ion-item>
-
-  <ion-button expand="block" (click)="cambiarCorreo()" [disabled]="loading">
-    Cambiar correo
-  </ion-button>
-
   <ion-text color="danger" *ngIf="mensaje">
     <p>{{ mensaje }}</p>
   </ion-text>
