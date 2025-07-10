@@ -5,7 +5,7 @@
       <ion-label position="floating">Número de serie</ion-label>
       <ion-input [(ngModel)]="numeroSerie" placeholder="Introduce el número de serie"></ion-input>
     </ion-item>
-    <ion-button expand="block" (click)="consultarCaja()">Consultar</ion-button>
+    <ion-button style="--background: #006d57; --color: white;" expand="block" (click)="consultarCaja()">Consultar</ion-button>
     <div *ngIf="informationCaja.length === 0">
       <p>Por favor introduce el numero de serie </p>
     </div>
