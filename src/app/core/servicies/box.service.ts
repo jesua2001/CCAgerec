@@ -37,5 +37,28 @@ export class BoxService {
     return this.http.post<BoxAnadir>(url, formData, { params });
   }
 
+  modificarCaja(caja: BoxAnadir): Observable<BoxAnadir[]> {
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(caja));
+
+    const params = new HttpParams()
+      .set('action', 'modificarCaja')
+      .set('debug', '');
+
+    const url = `${environment.apiBase}/${environment.endpoints.caja}`;
+    return this.http.post<BoxAnadir[]>(url, formData, { params });
+  }
+
+
+  buscarCajaPorCertificado(certificado: string): Observable<BoxAnadir[]> {
+    const formData = new FormData();
+    formData.append('certificado', certificado);
+    const params = new HttpParams().set('action', 'obtenercajaid');
+    const url = `${environment.apiBase}/${environment.endpoints.caja}`;
+    return this.http.post<BoxAnadir[]>(url, formData, { params });
+  }
+
+
+
 
 }
