@@ -1,51 +1,71 @@
 <app-header></app-header>
-<ion-content class="ion-padding" scroll-y="true">
 
-  <!-- Input para buscar por certificado -->
-  <ion-item>
-    <ion-label position="floating">Introduce el numero de serie </ion-label>
-    <ion-input
-      [(ngModel)]="Nserie"
-      name="certificadoInput"
-      type="text"
-      autofocus>
-    </ion-input>
-  </ion-item>
+<ion-content scroll-y="true" class="ion-padding bg-body">
+  <div class="d-flex flex-center min-h-100 py-10 px-5">
+    <div class="card card-flush w-100 mw-600px shadow-sm">
+      <div class="card-body p-10">
 
-  <ion-button expand="block" (click)="buscarCaja()">Buscar Caja</ion-button>
+        <!-- Título -->
+        <h1 class="text-center mb-10 fs-2qx fw-bold text-dark">Consulta de Caja</h1>
 
-  <!-- Mensajes -->
-  <ion-text color="danger" *ngIf="error">
-    <p class="ion-padding">{{ error }}</p>
-  </ion-text>
-
-  <ion-text color="success" *ngIf="mensaje">
-    <p class="ion-padding">{{ mensaje }}</p>
-  </ion-text>
-
-  <!-- Mostrar formulario SOLO si hay caja -->
-  <ion-card *ngIf="caja">
-    <ion-card-header>
-      <ion-card-title>Datos de la Caja</ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content>
-      <form (ngSubmit)="modificarCaja()">
-        <ng-container *ngFor="let clave of editableKeys">
-          <ion-item>
-            <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px; ">{{ clave }}</ion-label>
+        <!-- Input de búsqueda -->
+        <div class="mb-5">
+          <label class="form-label fw-semibold" style="color: #006d57;">Número de Serie</label>
+          <ion-item lines="inset">
             <ion-input
-              [(ngModel)]="caja[clave]"
-              [name]="'campo_' + clave"
-              [type]="isNumber(caja[clave]) ? 'number' : 'text'"
-              [placeholder]="'Introduce ' + clave.toLowerCase()">
+              [(ngModel)]="Nserie"
+              name="certificadoInput"
+              type="text"
+              placeholder="Ej: 12345678"
+              autofocus>
             </ion-input>
           </ion-item>
-        </ng-container>
+        </div>
 
-        <ion-button expand="block" type="submit">Guardar Cambios</ion-button>
-      </form>
-    </ion-card-content>
-  </ion-card>
+        <ion-button expand="block" (click)="buscarCaja()" style="--background: #006d57; --color: white;">
+          Buscar Caja
+        </ion-button>
 
+        <!-- Mensajes -->
+        <ion-text color="danger" *ngIf="error">
+          <p class="text-danger text-center mt-5">{{ error }}</p>
+        </ion-text>
+
+        <ion-text color="success" *ngIf="mensaje">
+          <p class="text-success text-center mt-5">{{ mensaje }}</p>
+        </ion-text>
+
+        <!-- Formulario editable -->
+        <div *ngIf="caja" class="mt-10">
+          <div class="card card-bordered">
+            <div class="card-header">
+              <div class="card-title fw-bold fs-3">Editar Datos de la Caja</div>
+            </div>
+            <div class="card-body">
+              <form (ngSubmit)="modificarCaja()">
+                <ng-container *ngFor="let clave of editableKeys">
+                  <div class="mb-4">
+                    <label class="form-label fw-semibold" style="color: #006d57;">{{ clave }}</label>
+                    <ion-item lines="inset">
+                      <ion-input
+                        [(ngModel)]="caja[clave]"
+                        [name]="'campo_' + clave"
+                        [type]="isNumber(caja[clave]) ? 'number' : 'text'"
+                        [placeholder]="'Introduce ' + clave.toLowerCase()">
+                      </ion-input>
+                    </ion-item>
+                  </div>
+                </ng-container>
+
+                <ion-button expand="block" type="submit" style="--background: #006d57; --color: white;" class="mt-4">
+                  Guardar Cambios
+                </ion-button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </ion-content>
