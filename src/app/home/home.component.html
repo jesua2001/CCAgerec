@@ -5,5 +5,6 @@
     <ion-button expand="block" (click)="consultar()">Consultar</ion-button>
     <ion-button expand="block" *ngIf="isAdmin || isDeveloper" (click)="anadircaja()">Añadir</ion-button>
     <ion-button expand="block" *ngIf="isDeveloper" (click)="abrirDeveloperTools()">Developer Tools</ion-button>
+    <ion-button expand="block" *ngIf="isAdmin || isDeveloper" (click)="modificarCaja()">Modificar</ion-button>
   </div>
 </ion-content>

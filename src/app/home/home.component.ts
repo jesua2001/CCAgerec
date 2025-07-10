@@ -68,4 +68,8 @@ export class HomeComponent implements OnInit {
   abrirDeveloperTools() {
     this.router.navigate(['/developer-tools']);
   }
+
+  modificarCaja() {
+    this.router.navigate(['/modificarcaja']);
+  }
 }
