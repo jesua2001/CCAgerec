@@ -20,10 +20,6 @@
   <ion-button expand="block" (click)="loginComoUsuarioSeleccionado()" [disabled]="loading">
     Login como usuario seleccionado
   </ion-button>
-
-  <ion-item *ngIf="!loading">
-    <ion-label position="floating">Nuevo correo</ion-label>
-  </ion-item>
   <ion-text color="danger" *ngIf="mensaje">
     <p>{{ mensaje }}</p>
   </ion-text>
