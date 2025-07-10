@@ -6,6 +6,7 @@ import {
 } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { BoxService } from "../core/servicies/box.service";
+import {HeaderComponent} from "../header/header.component";
 
 @Component({
   selector: 'app-modificarcaja',
@@ -16,7 +17,7 @@ import { BoxService } from "../core/servicies/box.service";
     FormsModule,
     IonContent,
     IonItem, IonLabel, IonInput, IonButton, IonText,
-    IonCard, IonCardHeader, IonCardTitle, IonCardContent
+    IonCard, IonCardHeader, IonCardTitle, IonCardContent, HeaderComponent
   ]
 })
 export class ModificarcajaComponent {
