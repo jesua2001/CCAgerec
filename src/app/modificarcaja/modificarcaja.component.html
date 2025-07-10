@@ -1,10 +1,10 @@
 <ion-content class="ion-padding" scroll-y="true">
 
-<!-- Input para buscar por certificado -->
+  <!-- Input para buscar por certificado -->
   <ion-item>
-    <ion-label position="floating">Certificado</ion-label>
+    <ion-label position="floating">Introduce el numero de serie </ion-label>
     <ion-input
-      [(ngModel)]="certificado"
+      [(ngModel)]="Nserie"
       name="certificadoInput"
       type="text"
       autofocus>
@@ -30,17 +30,17 @@
 
     <ion-card-content>
       <form (ngSubmit)="modificarCaja()">
-        <ng-container *ngFor="let entry of objectEntries(caja); trackBy: trackByClave">
-          <ion-item *ngIf="esEditable(entry.clave)">
-            <ion-label position="floating">{{ entry.clave }}</ion-label>
+        <ng-container *ngFor="let clave of editableKeys">
+          <ion-item>
+            <ion-label position="floating">{{ clave }}</ion-label>
             <ion-input
-              [(ngModel)]="caja[entry.clave]"
-              [name]="entry.clave"
-              [type]="isNumber(entry.valor) ? 'number' : 'text'">
+              [(ngModel)]="caja[clave]"
+              [name]="'campo_' + clave"
+              [type]="isNumber(caja[clave]) ? 'number' : 'text'"
+              [placeholder]="'Introduce ' + clave.toLowerCase()">
             </ion-input>
           </ion-item>
         </ng-container>
-
 
         <ion-button expand="block" type="submit">Guardar Cambios</ion-button>
       </form>
