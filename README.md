@@ -23,13 +23,3 @@ Este proyecto es una aplicación desarrollada para **Agerec S.L.**, cuyo objetiv
 - **HTML & SCSS** – Maquetación y estilos personalizados.
 
 ---
-
-## 📁 Estructura general del proyecto
-src/
-├── app/
-│ ├── core/ # Servicios (autenticación, utilidades)
-│ ├── components/ # Componentes reutilizables (header, etc.)
-│ ├── pages/ # Páginas principales (búsqueda, modificación, alta)
-│ ├── models/ # Interfaces y modelos de datos (Caja, Usuario)
-├── assets/ # Recursos estáticos como imágenes o logos
-├── environments/ # Variables de entorno para dev/prod
