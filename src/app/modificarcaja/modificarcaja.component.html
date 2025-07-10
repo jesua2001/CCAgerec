@@ -31,18 +31,16 @@
     <ion-card-content>
       <form (ngSubmit)="modificarCaja()">
         <ng-container *ngFor="let entry of objectEntries(caja); trackBy: trackByClave">
-
-        <ion-item *ngIf="esEditable(entry.clave)">
+          <ion-item *ngIf="esEditable(entry.clave)">
             <ion-label position="floating">{{ entry.clave }}</ion-label>
             <ion-input
-              [ngModel]="entry.valor"
-              (ngModelChange)="actualizarCampo(entry.clave, $event)"
+              [(ngModel)]="caja[entry.clave]"
               [name]="entry.clave"
               [type]="isNumber(entry.valor) ? 'number' : 'text'">
             </ion-input>
-
           </ion-item>
         </ng-container>
+
 
         <ion-button expand="block" type="submit">Guardar Cambios</ion-button>
       </form>
