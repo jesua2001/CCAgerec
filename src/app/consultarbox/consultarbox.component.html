@@ -1,24 +1,53 @@
 <app-header></app-header>
-<ion-content>
-  <div style="padding: 16px;">
-    <ion-item>
-      <ion-label position="floating">Número de serie</ion-label>
-      <ion-input [(ngModel)]="numeroSerie" placeholder="Introduce el número de serie"></ion-input>
-    </ion-item>
-    <ion-button expand="block" (click)="consultarCaja()">Consultar</ion-button>
-    <div *ngIf="informationCaja.length === 0">
-      <p>Por favor introduce el numero de serie </p>
+
+<ion-content fullscreen>
+  <div style="
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background-color: #f4f6f9;
+  ">
+    <div style="
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    ">
+      <h2 style="text-align: center; margin-bottom: 24px; font-size: 24px; font-weight: 600;">Consultar Caja</h2>
+
+      <ion-item>
+        <ion-label position="stacked">Número de serie</ion-label>
+        <ion-input [(ngModel)]="numeroSerie" placeholder="Introduce el número de serie"></ion-input>
+      </ion-item>
+
+      <ion-button
+        style="--background: #006d57; --color: white; margin-top: 20px;"
+        expand="block"
+        (click)="consultarCaja()">
+        Consultar
+      </ion-button>
+
+      <div *ngIf="informationCaja.length === 0 && !mensajeError" style="margin-top: 20px; text-align: center; color: #666;">
+        <p>Por favor introduce el número de serie</p>
+      </div>
+
+      <div *ngIf="informationCaja.length > 0" style="margin-top: 20px;">
+        <h3 style="font-size: 18px; font-weight: 500;">Información de la caja:</h3>
+        <ul style="padding-left: 16px; font-size: 16px;">
+          <li *ngFor="let caja of informationCaja">
+            <strong>IP:</strong> {{ caja.caneth }}
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="mensajeError" style="margin-top: 20px; color: red; text-align: center;">
+        {{ mensajeError }}
+      </div>
     </div>
-    <div *ngIf="informationCaja.length > 0">
-      <h2>Información de la caja:</h2>
-      <ul>
-        <li *ngFor="let caja of informationCaja " style="font-size: 20px">
-          IP: {{ caja.caneth }}<br>
-        </li>
-      </ul>
-    <div *ngIf="mensajeError" style="color: red;">
-      {{ mensajeError }}
-    </div>
-  </div>
   </div>
 </ion-content>
