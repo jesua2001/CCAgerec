@@ -50,9 +50,9 @@ export class BoxService {
   }
 
 
-  buscarCajaPorCertificado(certificado: string): Observable<BoxAnadir[]> {
+  buscarCajaPorCertificado(Nserie: string): Observable<BoxAnadir[]> {
     const formData = new FormData();
-    formData.append('certificado', certificado);
+    formData.append('Nserie', Nserie);
     const params = new HttpParams().set('action', 'obtenercajaid');
     const url = `${environment.apiBase}/${environment.endpoints.caja}`;
     return this.http.post<BoxAnadir[]>(url, formData, { params });
