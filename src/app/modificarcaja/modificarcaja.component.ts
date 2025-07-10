@@ -23,7 +23,7 @@ export class ModificarcajaComponent {
   mensaje: string = '';
   error: string = '';
   caja: any = null;
-  certificado?: string;
+  Nserie?: string;
   trackByClave(index: number, item: { clave: string, valor: any }): string {
     return item.clave;
   }
@@ -36,16 +36,16 @@ export class ModificarcajaComponent {
   }
 
   buscarCaja(): void {
-    if (!this.certificado) {
+    if (!this.Nserie) {
       this.error = 'Por favor, introduce un certificado';
       this.caja = null;
       return;
     }
 
-    this.cajaService.buscarCajaPorCertificado(this.certificado).subscribe({
+    this.cajaService.buscarCajaPorCertificado(this.Nserie).subscribe({
       next: (res) => {
         if (res && res.length > 0) {
-          this.caja = res[0];
+          this.caja = { ...res[0] }; // CLAVE: clonamos el objeto
           this.error = '';
           this.mensaje = '';
         } else {
@@ -80,9 +80,6 @@ export class ModificarcajaComponent {
     });
   }
 
-  objectEntries(obj: any): { clave: string; valor: any }[] {
-    return Object.entries(obj).map(([clave, valor]) => ({ clave, valor }));
-  }
 
 
 
@@ -94,8 +91,10 @@ export class ModificarcajaComponent {
     const noEditables = ['certificado', 'id'];
     return !noEditables.includes(clave);
   }
-  actualizarCampo(clave: string, valor: any) {
-    this.caja[clave] = valor;
+  get editableKeys(): string[] {
+    return Object.keys(this.caja || {}).filter(key => this.esEditable(key));
   }
+
+
 
 }
