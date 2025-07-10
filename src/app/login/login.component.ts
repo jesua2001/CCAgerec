@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   IonButton,
   IonContent,
-  IonHeader,
+  IonHeader, IonImg,
   IonInput,
   IonItem,
   IonLabel,
@@ -28,7 +28,8 @@ import { LoginRequest, LoginResponse } from '@models/user.model';
     IonHeader,
     IonToolbar,
     IonTitle,
-    RouterModule
+    RouterModule,
+    IonImg
   ]
 })
 export class LoginComponent implements OnInit {
