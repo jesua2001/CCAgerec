@@ -81,10 +81,9 @@ export class ModificarcajaComponent {
   }
 
   objectEntries(obj: any): { clave: string; valor: any }[] {
-    return Object.entries(obj)
-      .filter(([_, valor]) => valor !== null && valor !== undefined)
-      .map(([clave, valor]) => ({ clave, valor }));
+    return Object.entries(obj).map(([clave, valor]) => ({ clave, valor }));
   }
+
 
 
   isNumber(value: any): boolean {
