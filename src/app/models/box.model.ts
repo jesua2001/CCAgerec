@@ -1,7 +1,7 @@
 export interface BoxObtener {
   NSERIE: string;
   caneth: string;
-
+  localizacion: string;
 }
 
 export interface BoxAnadir {
