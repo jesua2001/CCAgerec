@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
           // Guardamos token en localStorage
           localStorage.setItem('token', response.token);
           // Navegamos al home
-          this.router.navigate(['/home']);
+          this.router.navigate(['/cambiarprograma']);
         } else if (response.error) {
           alert('Error: ' + response.error);
         } else {
