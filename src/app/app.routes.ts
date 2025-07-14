@@ -37,5 +37,9 @@
     {
       path: 'modificarcaja',
       loadComponent: () => import('./modificarcaja/modificarcaja.component').then(m => m.ModificarcajaComponent)
+    },
+    {
+      path:'cambiarprograma',
+      loadComponent: () => import('./changeaplication/changeaplication.component').then(m => m.ChangeaplicationComponent)
     }
   ];
