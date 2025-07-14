@@ -33,7 +33,6 @@ import { ToastController } from '@ionic/angular';
     FormsModule,
     IonSelect,
     IonSelectOption,
-    IonInput,
     IonButton,
     IonText,
     IonToolbar,
@@ -119,43 +118,45 @@ export class DeveloperPanelPage implements OnInit {
   }
 
   loginComoUsuarioSeleccionado() {
-    const usuario = this.usuarios.find(u => Number(u.id) === Number(this.id));
-
-    if (!usuario) {
-      this.mensaje = 'Usuario no encontrado.';
+    const token = this.authState.getToken();
+    if (!token) {
+      this.mensaje = 'No autenticado';
       return;
     }
 
-    const token = this.generarTokenFalso(usuario);
+    const formData = new FormData();
+    formData.append('id', this.id.toString());
 
-    this.authState.loginConToken(token);
-
-    this.router.navigate(['/home']).then(async () => {
-      // Forzar recarga completa de la página después de la navegación
-      const loading = await this.toastController.create({
-        message: 'Cargando...',
-        duration: 2000,
-        spinner: 'crescent',
-        cssClass: 'custom-loading',
-      });
-      await loading.present();
-
-      window.location.reload();
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token
     });
+
+    const params = new HttpParams().set('action', 'impersonateUser');
+
+    this.http.post(`${environment.apiBase}/${environment.endpoints.user}`, formData, { headers, params })
+      .subscribe({
+        next: async (res: any) => {
+          if (res.token) {
+            this.authState.loginConToken(res.token);
+
+            const loading = await this.toastController.create({
+              message: 'Cambiando de usuario...',
+              duration: 2000,
+              spinner: 'crescent',
+            });
+            await loading.present();
+
+            this.router.navigate(['/cambiarprograma']).then(() => {
+              window.location.reload();
+            });
+          } else {
+            this.mensaje = 'Error al obtener token';
+          }
+        },
+        error: (err) => {
+          this.mensaje = err.error?.description || 'Error al impersonar usuario';
+        }
+      });
   }
 
-  private generarTokenFalso(usuario: any): string {
-    const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
-    const payload = btoa(JSON.stringify({
-      data: {
-        id: usuario.id,
-        email: usuario.email,
-        nombre: usuario.name,
-        isAdmin: usuario.isAdmin,
-        isDeveloper: usuario.email === 'developer@miapp.com'
-      }
-    }));
-    const signature = btoa('firma-falsa');
-    return `${header}.${payload}.${signature}`;
-  }
 }
