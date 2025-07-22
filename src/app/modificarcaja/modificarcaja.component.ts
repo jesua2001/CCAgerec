@@ -6,18 +6,19 @@ import {
 } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { BoxService } from "../core/servicies/box.service";
-import {HeaderComponent} from "../header/header.component";
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-modificarcaja',
-  templateUrl: './modificarcaja.component.html',
   standalone: true,
+  templateUrl: './modificarcaja.component.html', // Aquí va la ruta al HTML
   imports: [
     CommonModule,
     FormsModule,
     IonContent,
     IonItem, IonLabel, IonInput, IonButton, IonText,
-    IonCard, IonCardHeader, IonCardTitle, IonCardContent, HeaderComponent
+    IonCard, IonCardHeader, IonCardTitle, IonCardContent,
+    HeaderComponent
   ]
 })
 export class ModificarcajaComponent {
@@ -25,16 +26,10 @@ export class ModificarcajaComponent {
   error: string = '';
   caja: any = null;
   Nserie?: string;
-  trackByClave(index: number, item: { clave: string, valor: any }): string {
-    return item.clave;
-  }
-
 
   constructor(private cajaService: BoxService) {}
 
-  ngOnInit(): void {
-    // Inicialización si se requiere
-  }
+  ngOnInit(): void {}
 
   buscarCaja(): void {
     if (!this.Nserie) {
@@ -46,7 +41,7 @@ export class ModificarcajaComponent {
     this.cajaService.buscarCajaPorCertificado(this.Nserie).subscribe({
       next: (res) => {
         if (res && res.length > 0) {
-          this.caja = { ...res[0] }; // CLAVE: clonamos el objeto
+          this.caja = { ...res[0] };
           this.error = '';
           this.mensaje = '';
         } else {
@@ -81,9 +76,6 @@ export class ModificarcajaComponent {
     });
   }
 
-
-
-
   isNumber(value: any): boolean {
     return !isNaN(value) && typeof value !== 'boolean';
   }
@@ -92,10 +84,12 @@ export class ModificarcajaComponent {
     const noEditables = ['certificado', 'id'];
     return !noEditables.includes(clave);
   }
+
   get editableKeys(): string[] {
     return Object.keys(this.caja || {}).filter(key => this.esEditable(key));
   }
 
-
-
+  trackByClave(index: number, item: { clave: string, valor: any }): string {
+    return item.clave;
+  }
 }
