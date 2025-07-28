@@ -5,6 +5,7 @@ import { environment } from '@environments/environment';
 import {LoginRequest, LoginResponse, RegisterRequest} from '@models/user.model';
 import {jwtDecode} from "jwt-decode";
 import {JwtPayloadModel} from "@models/jwtdecode.model";
+import {Router} from "@angular/router";
 
 
 @Injectable({
@@ -13,7 +14,7 @@ import {JwtPayloadModel} from "@models/jwtdecode.model";
 export class AuthService {
   private rol: string = '';
   private isAdminUser: boolean = false;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient , private router:Router) {}
 
   login(data: LoginRequest): Observable<LoginResponse> {
     const formData = new FormData();
@@ -84,12 +85,12 @@ export class AuthService {
         console.log(response?.success || 'Sesión cerrada');
         localStorage.removeItem('token');
         // Redirigir al login u otra vista
-        window.location.href = '/login'; // Cambia esto si usas Angular Router
+        this.router.navigate(['/login']); // Cambia esto si usas Angular Router
       },
       error: (error) => {
         console.error(error?.error?.error || 'Error al cerrar sesión');
         localStorage.removeItem('token'); // Por seguridad, igual lo borramos
-        window.location.href = '/login';
+        this.router.navigate(['/login']);
       }
     });
   }

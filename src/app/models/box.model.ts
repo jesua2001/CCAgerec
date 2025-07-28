@@ -5,7 +5,7 @@ export interface BoxObtener {
 }
 
 export interface BoxAnadir {
-  certificado: string;            // PRIMARY KEY
+  certificado: string;
   ipinterno?: string;
   ipredmaquina?: string;
   mascaradered?: string;
@@ -13,11 +13,11 @@ export interface BoxAnadir {
   router?: string;
   caneth?: string;
   referenciaagerec?: string;
-  sim?: number;
-  pin?: number;
-  punk?: number;
-  Nserie?: number;
-  numerotlf?: number;
+  sim?: string | number;
+  pin?: string | number;
+  punk?: string | number;
+  Nserie?: string;
+  numerotlf?: string | number;
   roaming?: string;
   ultimaverificacion?: string;
   sellorojo?: string;
