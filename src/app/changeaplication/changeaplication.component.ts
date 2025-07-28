@@ -36,7 +36,9 @@ export class ChangeaplicationComponent implements OnInit {
     this.router.navigate(['/home']);  // ruta para ccagerec
   }
 
-  changeApplicationVG() {
-    this.router.navigate(['/changeapplicationvg']);  // ruta para vgservicies
+  changeApplicationVGServices() {
+    this.router.navigate(['/homevgparts']);
   }
+
+
 }
