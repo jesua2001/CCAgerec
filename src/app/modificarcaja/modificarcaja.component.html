@@ -5,10 +5,8 @@
     <div class="card card-flush w-100 mw-600px shadow-sm">
       <div class="card-body p-10">
 
-        <!-- Título -->
         <h1 class="text-center mb-10 fs-2qx fw-bold text-dark">Consulta de Caja</h1>
 
-        <!-- Input de búsqueda -->
         <div class="mb-5">
           <label class="form-label fw-semibold" style="color: #006d57;">Número de Serie</label>
           <ion-item lines="inset">
@@ -26,7 +24,6 @@
           Buscar Caja
         </ion-button>
 
-        <!-- Mensajes -->
         <ion-text color="danger" *ngIf="error">
           <p class="text-danger text-center mt-5">{{ error }}</p>
         </ion-text>
@@ -35,7 +32,6 @@
           <p class="text-success text-center mt-5">{{ mensaje }}</p>
         </ion-text>
 
-        <!-- Formulario editable -->
         <div *ngIf="caja" class="mt-10">
           <div class="card card-bordered">
             <div class="card-header">
@@ -50,7 +46,7 @@
                       <ion-input
                         [(ngModel)]="caja[clave]"
                         [name]="'campo_' + clave"
-                        [type]="isNumber(caja[clave]) ? 'number' : 'text'"
+                        type="text"
                         [placeholder]="'Introduce ' + clave.toLowerCase()">
                       </ion-input>
                     </ion-item>
