@@ -1,1 +1,52 @@
 <app-header></app-header>
+
+<ion-content fullscreen>
+  <div style="
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background-color: #f4f6f9;
+  ">
+    <div style="
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    ">
+      <h2 style="text-align: center; margin-bottom: 24px; font-size: 24px; font-weight: 600;">Cruces de Referencia</h2>
+
+      <ion-item>
+        <ion-label position="stacked">Modelo</ion-label>
+        <ion-input placeholder="Introduce el modelo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Marca</ion-label>
+        <ion-input placeholder="Introduce la marca"></ion-input>
+      </ion-item>
+
+      <ion-button
+        style="--background: #006d57; --color: white; margin-top: 20px;"
+        expand="block"
+        (click)="consultarHomevgparts()">
+        Consultar
+      </ion-button>
+
+      <div style="margin-top: 20px; text-align: center; color: #666;">
+        <p>Por favor introduce el modelo</p>
+      </div>
+
+      <div style="margin-top: 20px; text-align: center; color: #666;">
+        <p>Por favor introduce la marca</p>
+      </div>
+
+
+
+    </div>
+  </div>
+</ion-content>
