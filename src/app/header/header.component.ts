@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {IonButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar} from "@ionic/angular/standalone";
 import {AuthService} from "../core/servicies/auth.service";
 import {CommonModule} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ import {CommonModule} from "@angular/common";
 })
 export class HeaderComponent  implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService , private router:Router) { }
   isAdmin: boolean = false;
   isDeveloper: boolean = false;
 
@@ -51,6 +52,6 @@ export class HeaderComponent  implements OnInit {
   }
 
   goToHome() {
-    window.location.href = '/home';
+    this.router.navigate(['/cambiarprograma']);
   }
 }
