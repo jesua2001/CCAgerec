@@ -27,4 +27,8 @@ export class HomevgpartComponent  implements OnInit {
   consultarHomevgparts() {
 
   }
+
+  anadirVgparts() {
+
+  }
 }
