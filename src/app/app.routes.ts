@@ -42,5 +42,13 @@
     {
       path:'cambiarprograma',
       loadComponent: () => import('./changeaplication/changeaplication.component').then(m => m.ChangeaplicationComponent)
+    },
+    {
+      path:'homevgparts',
+      loadComponent: () => import('./homevgpart/homevgpart.component').then(m => m.HomevgpartComponent)
+    },
+    {
+      path:'anadirvgparts',
+      loadComponent: () => import('./anadirvgpart/anadirvgpart.component').then(m => m.AnadirvgpartComponent)
     }
   ];
