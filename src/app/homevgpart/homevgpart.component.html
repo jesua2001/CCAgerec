@@ -32,19 +32,34 @@
         <ion-input [(ngModel)]= "marca" placeholder = "Introduce la marca"></ion-input>
       </ion-item>
 
+      <ion-item>
+        <ion-label position="stacked">Serie</ion-label>
+        <ion-input [(ngModel)]= "numeroSerie" placeholder = "Introduce el número de serie"></ion-input>
+      </ion-item>
+
       <ion-button
+        *ngIf="!mostrarBotonesAnadir"
         style="--background: #006d57; --color: white; margin-top: 20px;"
         expand="block"
         (click)="consultarHomevgparts()">
         Consultar
       </ion-button>
 
-      <ion-button
-        style="--background: #006d57; --color: white; margin-top: 20px;"
-        expand="block"
-        (click)="anadirVgparts()">
-        Añadir
-      </ion-button>
+      <div *ngIf="mostrarBotonesAnadir">
+        <ion-button
+          style="--background: #006d57; --color: white; margin-top: 20px;"
+          expand="block"
+          (click)="anadirVgpartsCEExistente()">
+          Añadir CE nueva
+        </ion-button>
+
+        <ion-button
+          style="--background: #006d57; --color: white; margin-top: 20px;"
+          expand="block"
+          (click)="anadirVgpartsCENuevo()">
+          Añadir CE existente
+        </ion-button>
+      </div>
 
       <div *ngIf="informationMaquina.length > 0" style="margin-top: 20px;">
         <h3 style="font-size: 18px; font-weight: 500;">Información de la máquina:</h3>
