@@ -48,7 +48,7 @@
       loadComponent: () => import('./homevgpart/homevgpart.component').then(m => m.HomevgpartComponent)
     },
     {
-      path:'anadirvgparts',
+      path:'anadircenuevo',
       loadComponent: () => import('./anadirvgpart/anadirvgpart.component').then(m => m.AnadirvgpartComponent)
     }
   ];

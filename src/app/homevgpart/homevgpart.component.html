@@ -17,6 +17,8 @@
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
     ">
       <h2 style="text-align: center; margin-bottom: 24px; font-size: 24px; font-weight: 600;">Cruces de Referencia</h2>
 
@@ -30,31 +32,59 @@
         <ion-input [(ngModel)]= "marca" placeholder = "Introduce la marca"></ion-input>
       </ion-item>
 
+      <ion-item>
+        <ion-label position="stacked">Serie</ion-label>
+        <ion-input [(ngModel)]= "numeroSerie" placeholder = "Introduce el número de serie"></ion-input>
+      </ion-item>
+
       <ion-button
+        *ngIf="!mostrarBotonesAnadir"
         style="--background: #006d57; --color: white; margin-top: 20px;"
         expand="block"
         (click)="consultarHomevgparts()">
         Consultar
       </ion-button>
 
-      <ion-button
-        style="--background: #006d57; --color: white; margin-top: 20px;"
-        expand="block"
-        (click)="anadirVgparts()">
-        Añadir
-      </ion-button>
+      <div *ngIf="mostrarBotonesAnadir">
+        <ion-button
+          style="--background: #006d57; --color: white; margin-top: 20px;"
+          expand="block"
+          (click)= "anadirVgpartsCENuevo()">
+          Añadir CE nueva
+        </ion-button>
+
+        <ion-button
+          style="--background: #006d57; --color: white; margin-top: 20px;"
+          expand="block"
+          (click)="anadirVgpartsCEExistente()">
+          Añadir CE existente
+        </ion-button>
+      </div>
 
       <div *ngIf="informationMaquina.length > 0" style="margin-top: 20px;">
-        <h3 style="font-size: 18px; font-weight: 500;">Información de la maquina:</h3>
-        <ul style="padding-left: 16px; font-size: 16px;">
-          <li *ngFor="let maquina of informationMaquina">
-            <strong>Modelo:</strong> {{maquina.modelo}}
-            <strong>Marca:</strong> {{ maquina.marca}}
-            <strong>Serie:</strong> {{maquina.serie}}
-            <p><strong>URL:</strong> {{maquina.URL}}</p>
+        <h3 style="font-size: 18px; font-weight: 500;">Información de la máquina:</h3>
+        <ul style="padding-left: 0; font-size: 16px; list-style: none;">
+          <li *ngFor="let maquina of informationMaquina" style="margin-bottom: 24px; border-bottom: 1px solid #ccc; padding-bottom: 16px;">
+            <!-- Primera línea: Modelo + Marca + Serie -->
+            <div style="margin-bottom: 8px;">
+              <strong>Modelo:</strong> {{maquina.modelo}}<br>
+              <strong>Marca:</strong> {{maquina.marca}}<br>
+              <strong>Serie:</strong> {{maquina.serie}}
+            </div>
+
+            <!-- Segunda parte: URLs -->
+            <div style="margin-top: 8px;">
+              <strong>URL_hidraulico:</strong> {{maquina.URL_hidraulico}}<br>
+              <strong>URL_electrica:</strong> {{maquina.URL_electrica}}<br>
+              <strong>URL_tecnico:</strong> {{maquina.URL_tecnico}}<br>
+              <strong>URL_recambio:</strong> {{maquina.URL_recambio}}<br>
+              <strong>URL_operario:</strong> {{maquina.URL_operario}}<br>
+              <strong>URL_dysplay:</strong> {{maquina.URL_dysplay}}
+            </div>
           </li>
         </ul>
       </div>
+
 
     </div>
   </div>

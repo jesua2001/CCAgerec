@@ -8,6 +8,8 @@ import {CommonModule, NgForOf, NgIf} from '@angular/common';
 import {ToastController} from "@ionic/angular";
 import {TmplAstHostElement} from "@angular/compiler";
 import {BoxObtener} from "@models/box.model";
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-homevgpart',
@@ -32,9 +34,14 @@ export class HomevgpartComponent  implements OnInit {
   numeroSerie: string = '';
   mensajeError: string = '';
   informationMaquina: Maquina[] = [];
+  
+
+  vacio: boolean = false;
+  mostrarBotonesAnadir = false;
+
   toastController: ToastController;
 
-  constructor(private maquina: MaquinaService, private ToastController: ToastController) {
+  constructor(private maquina: MaquinaService, private ToastController: ToastController, private router: Router) {
     this.toastController = ToastController;
   }
 
@@ -50,26 +57,35 @@ export class HomevgpartComponent  implements OnInit {
       return;
       }
 
-      this.maquina.obtenerEquivalencia(this.modelo, this.marca, this.numeroSerie).subscribe({
-        next: (response) => {
-          if (response.length==0){
-            this.mensajeError = 'No se encontró ninguna máquina con ese modelo, marca y/o número de serie.';
-            this.informationMaquina = [];
-          }else {
-            this.informationMaquina = response;
-            this.mostrarToast("La maquina no existe o no se ha encontrado");
-            this.mensajeError = '';
-          }
-        },
-        error: () => {
-          this.mensajeError = 'Ocurrió un error al consultar la maquina.';
-          console.log("Error al consultar la maquina.");
-        }
-      });
+   this.maquina.obtenerEquivalencia(this.modelo, this.marca, this.numeroSerie).subscribe({
+  next: (response: any) => {
+
+    // Caso en que viene vacía la respuesta (ej: { vacio: true })
+    if (response.vacio === true) {
+      this.vacio = true;
+      this.informationMaquina = [];
+      this.mostrarBotonesAnadir = true;
+      this.mostrarToast("No se encontró ninguna máquina con ese modelo, marca o número de serie.");
+    } else {
+      this.vacio = false;
+      this.informationMaquina = response;
+      this.mostrarBotonesAnadir = false;
+    }
+  },
+  error: () => {
+    this.mostrarToast('Ocurrió un error al consultar la máquina.');
+    this.vacio = false;
+    this.mostrarBotonesAnadir = false;
+  }
+});
   }
 
-  anadirVgparts() {
+  anadirVgpartsCENuevo() {
+    this.router.navigate(['/anadircenuevo'])
+  }
 
+  anadirVgpartsCEExistente() {
+    this.router.navigate(['/anadirceexistente'])
   }
   async mostrarToast(mensaje: string) {
     const toast = await this.toastController.create({
