@@ -59,7 +59,6 @@ export class HomevgpartComponent  implements OnInit {
 
    this.maquina.obtenerEquivalencia(this.modelo, this.marca, this.numeroSerie).subscribe({
   next: (response: any) => {
-    console.log("📦 Respuesta del backend:", response);
 
     // Caso en que viene vacía la respuesta (ej: { vacio: true })
     if (response.vacio === true) {
@@ -83,6 +82,10 @@ export class HomevgpartComponent  implements OnInit {
 
   anadirVgpartsCENuevo() {
     this.router.navigate(['/anadircenuevo'])
+  }
+
+  anadirVgpartsCEExistente() {
+    this.router.navigate(['/anadirceexistente'])
   }
   async mostrarToast(mensaje: string) {
     const toast = await this.toastController.create({
