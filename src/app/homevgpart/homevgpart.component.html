@@ -47,21 +47,29 @@
       </ion-button>
 
       <div *ngIf="informationMaquina.length > 0" style="margin-top: 20px;">
-        <h3 style="font-size: 18px; font-weight: 500;">Información de la maquina:</h3>
-        <ul style="padding-left: 16px; font-size: 16px;">
-          <li *ngFor="let maquina of informationMaquina">
-            <strong>Modelo:</strong> {{maquina.modelo}}
-            <strong>Marca:</strong> {{ maquina.marca}}
-            <strong>Serie:</strong> {{maquina.serie}}
-            <strong>URL_hidraulico:</strong> {{maquina.URL_hidraulico}}
-            <strong>URL_electrica:</strong> {{maquina.URL_electrica}}
-            <strong>URL_tecnico:</strong> {{maquina.URL_tecnico}}
-            <strong>URL_recambio:</strong> {{maquina.URL_recambio}}
-            <strong>URL_operario:</strong> {{maquina.URL_operario}}
-            <strong>URL_dysplay:</strong> {{maquina.URL_dysplay}}
+        <h3 style="font-size: 18px; font-weight: 500;">Información de la máquina:</h3>
+        <ul style="padding-left: 0; font-size: 16px; list-style: none;">
+          <li *ngFor="let maquina of informationMaquina" style="margin-bottom: 24px; border-bottom: 1px solid #ccc; padding-bottom: 16px;">
+            <!-- Primera línea: Modelo + Marca + Serie -->
+            <div style="margin-bottom: 8px;">
+              <strong>Modelo:</strong> {{maquina.modelo}}<br>
+              <strong>Marca:</strong> {{maquina.marca}}<br>
+              <strong>Serie:</strong> {{maquina.serie}}
+            </div>
+
+            <!-- Segunda parte: URLs -->
+            <div style="margin-top: 8px;">
+              <strong>URL_hidraulico:</strong> {{maquina.URL_hidraulico}}<br>
+              <strong>URL_electrica:</strong> {{maquina.URL_electrica}}<br>
+              <strong>URL_tecnico:</strong> {{maquina.URL_tecnico}}<br>
+              <strong>URL_recambio:</strong> {{maquina.URL_recambio}}<br>
+              <strong>URL_operario:</strong> {{maquina.URL_operario}}<br>
+              <strong>URL_dysplay:</strong> {{maquina.URL_dysplay}}
+            </div>
           </li>
         </ul>
       </div>
+
 
     </div>
   </div>
