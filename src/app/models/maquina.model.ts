@@ -11,4 +11,5 @@ export interface Maquina {
   URL_operario?: string;
   URL_dysplay?: string;
   ce: number;
+  vacio:boolean;
 }
