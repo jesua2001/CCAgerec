@@ -22,12 +22,12 @@
 
       <ion-item>
         <ion-label position="stacked">Modelo</ion-label>
-        <ion-input placeholder="Introduce el modelo"></ion-input>
+        <ion-input [(ngModel)] = "modelo" placeholder="Introduce el modelo"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Marca</ion-label>
-        <ion-input placeholder="Introduce la marca"></ion-input>
+        <ion-input [(ngModel)]= "marca" placeholder = "Introduce la marca"></ion-input>
       </ion-item>
 
       <ion-button
@@ -44,15 +44,17 @@
         Añadir
       </ion-button>
 
-      <div style="margin-top: 20px; text-align: center; color: #666;">
-        <p>Por favor introduce el modelo</p>
+      <div *ngIf="informationMaquina.length > 0" style="margin-top: 20px;">
+        <h3 style="font-size: 18px; font-weight: 500;">Información de la maquina:</h3>
+        <ul style="padding-left: 16px; font-size: 16px;">
+          <li *ngFor="let maquina of informationMaquina">
+            <strong>Modelo:</strong> {{maquina.modelo}}
+            <strong>Marca:</strong> {{ maquina.marca}}
+            <strong>Serie:</strong> {{maquina.serie}}
+            <p><strong>URL:</strong> {{maquina.URL}}</p>
+          </li>
+        </ul>
       </div>
-
-      <div style="margin-top: 20px; text-align: center; color: #666;">
-        <p>Por favor introduce la marca</p>
-      </div>
-
-
 
     </div>
   </div>
