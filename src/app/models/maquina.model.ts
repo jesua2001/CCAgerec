@@ -4,7 +4,6 @@ export interface Maquina {
   marca: string;
   serie?: string;
   foto: File | Blob;
-  url?: string;
+  URL?: string;
   ce: number;
-
 }
