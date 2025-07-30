@@ -17,6 +17,8 @@
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
     ">
       <h2 style="text-align: center; margin-bottom: 24px; font-size: 24px; font-weight: 600;">Cruces de Referencia</h2>
 
@@ -51,7 +53,7 @@
             <strong>Modelo:</strong> {{maquina.modelo}}
             <strong>Marca:</strong> {{ maquina.marca}}
             <strong>Serie:</strong> {{maquina.serie}}
-            <p><strong>URL_hidraulico:</strong> {{maquina.URL_hidraulico}}</p>
+            <strong>URL_hidraulico:</strong> {{maquina.URL_hidraulico}}
             <strong>URL_electrica:</strong> {{maquina.URL_electrica}}
             <strong>URL_tecnico:</strong> {{maquina.URL_tecnico}}
             <strong>URL_recambio:</strong> {{maquina.URL_recambio}}
