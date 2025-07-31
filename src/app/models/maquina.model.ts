@@ -10,6 +10,6 @@ export interface Maquina {
   URL_recambio?: string;
   URL_operario?: string;
   URL_dysplay?: string;
-  ce: number;
+  CE: number;
   vacio:boolean;
 }
