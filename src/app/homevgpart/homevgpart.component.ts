@@ -6,8 +6,6 @@ import { Maquina } from "@models/maquina.model";
 import {FormsModule} from "@angular/forms";
 import {CommonModule, NgForOf, NgIf} from '@angular/common';
 import {ToastController} from "@ionic/angular";
-import {TmplAstHostElement} from "@angular/compiler";
-import {BoxObtener} from "@models/box.model";
 import { Router } from '@angular/router';
 
 
@@ -34,7 +32,7 @@ export class HomevgpartComponent  implements OnInit {
   numeroSerie: string = '';
   mensajeError: string = '';
   informationMaquina: Maquina[] = [];
-  
+
 
   vacio: boolean = false;
   mostrarBotonesAnadir = false;

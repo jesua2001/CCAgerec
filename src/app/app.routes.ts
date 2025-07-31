@@ -50,5 +50,9 @@
     {
       path:'anadircenuevo',
       loadComponent: () => import('./anadirvgpart/anadirvgpart.component').then(m => m.AnadirvgpartComponent)
+    },
+    {
+      path:'anadirceexistente',
+      loadComponent: () => import('./anadirvgpartceexistente/anadirvgpartceexistente.component').then(m => m.AnadirvgpartceexistenteComponent)
     }
   ];
