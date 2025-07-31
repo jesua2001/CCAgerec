@@ -19,7 +19,7 @@ export class MaquinaService {
     formData.append('MARCA', marca);
     formData.append('SERIE', numeroSerie);
 
-  
+
     const params = new HttpParams()
       .set('action', 'obtenerCruceApiladores')
       .set('debug', '');
@@ -28,7 +28,7 @@ export class MaquinaService {
     return this.http.post<Maquina[]>(url, formData, { params });
   }
 
-  anadirNuevaMaquinaConCEEquivalente(data: any): Observable<Maquina[]> {
+  anadirNuevaMaquinaConCEEquivalente(data: Maquina): Observable<Maquina[]> {
     const formData = new FormData();
     formData.append('data', JSON.stringify(data));  // Backend espera esto
 
