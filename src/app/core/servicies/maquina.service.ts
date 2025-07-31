@@ -19,6 +19,7 @@ export class MaquinaService {
     formData.append('MARCA', marca);
     formData.append('SERIE', numeroSerie);
 
+  
     const params = new HttpParams()
       .set('action', 'obtenerCruceApiladores')
       .set('debug', '');
@@ -27,5 +28,30 @@ export class MaquinaService {
     return this.http.post<Maquina[]>(url, formData, { params });
   }
 
+  anadirNuevaMaquinaConCEEquivalente(data: any): Observable<Maquina[]> {
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(data));  // Backend espera esto
+
+    const params = new HttpParams()
+      .set('action', 'anadirMaquinaCEEquivalente')
+      .set('debug', '');
+
+    const url = `${environment.apiBase}/${environment.endpoints.maquina}`;
+    return this.http.post<any>(url, formData, { params });
+  }
+
+  obtenerCE(modelo: string, marca: string, numeroSerie: string): Observable<Maquina[]> {
+    const formData = new FormData();
+    formData.append('MODELO', modelo);
+    formData.append('MARCA', marca);
+    formData.append('SERIE', numeroSerie);
+
+    const params = new HttpParams()
+      .set('action', 'obtenerCE')
+      .set('debug', '');
+
+    const url = `${environment.apiBase}/${environment.endpoints.maquina}`;
+    return this.http.post<Maquina[]>(url, formData, { params });
+  }
 
 }
