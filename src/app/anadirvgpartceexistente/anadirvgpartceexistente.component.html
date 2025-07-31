@@ -1,3 +1,77 @@
-<p>
-  anadirvgpartceexistente works!
-</p>
+<app-header></app-header>
+
+<ion-content class="ion-padding">
+  <ion-title class="ion-text-center">
+    Crear máquina con CE existente
+  </ion-title>
+
+  <!-- Buscador de CE existente -->
+  <form (submit)="buscarCEExistente()" class="mt-10 mb-10">
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">Modelo CE existente</ion-label>
+      <ion-input placeholder="Introduce el modelo" [(ngModel)]="modeloBusqueda" name="modeloBusqueda" required></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">Marca CE existente</ion-label>
+      <ion-input placeholder="Introduce la marca" [(ngModel)]="marcaBusqueda" name="marcaBusqueda" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit">Buscar CE</ion-button>
+  </form>
+
+  <!-- Formulario para crear máquina con ese CE -->
+  <form (submit)="crearMaquinaConCE()" *ngIf="ceEncontrado" class="mt-10 mb-10">
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">Modelo</ion-label>
+      <ion-input placeholder="Introduce el modelo" [(ngModel)]="nuevaMaquina.modelo" name="modelo" required></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">Marca</ion-label>
+      <ion-input placeholder="Introduce la marca" [(ngModel)]="nuevaMaquina.marca" name="marca" required></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">Serie</ion-label>
+      <ion-input placeholder="Introduce la serie" [(ngModel)]="nuevaMaquina.serie" name="serie"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Foto</ion-label>
+      <input type="file" (change)="onFotoSeleccionada($event)" accept=".jpg,.jpeg,.png"> 
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">URL hidráulico</ion-label>
+      <ion-input placeholder="Introduce el URL hidráulico" [(ngModel)]="nuevaMaquina.URL_hidraulico" name="URL_hidraulico"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">URL eléctrica</ion-label>
+      <ion-input placeholder="Introduce el URL eléctr ica" [(ngModel)]="nuevaMaquina.URL_electrica" name="URL_electrica"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">URL técnico</ion-label>
+      <ion-input placeholder="Introduce el URL técnico" [(ngModel)]="nuevaMaquina.URL_tecnico" name="URL_tecnico"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">URL recambio</ion-label>
+      <ion-input placeholder="Introduce el URL recambio" [(ngModel)]="nuevaMaquina.URL_recambio" name="URL_recambio"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">URL operario</ion-label>
+      <ion-input placeholder="Introduce el URL operario" [(ngModel)]="nuevaMaquina.URL_operario" name="URL_operario"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">URL display</ion-label>
+      <ion-input placeholder="Introduce el URL display" [(ngModel)]="nuevaMaquina.URL_dysplay" name="URL_dysplay"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit">Crear Máquina</ion-button>
+  </form>
+</ion-content>
