@@ -32,6 +32,7 @@ export class MaquinaService {
   const formData = new FormData();
   formData.append('data', JSON.stringify(data));
   formData.append('tipoMaquina', tipoMaquina); // 👈 esto es lo nuevo
+    formData.append('foto', data.foto);
 
   const params = new HttpParams()
     .set('action', 'anadirMaquinaCEEquivalente')
@@ -56,18 +57,27 @@ export class MaquinaService {
     return this.http.post<Maquina[]>(url, formData, { params });
   }
 
-  anadirCENuevo(data: Maquina, tipoMaquina: string): Observable<Maquina[]> {
-  const formData = new FormData();
-  formData.append('data', JSON.stringify(data));
-  formData.append('tipoMaquina', tipoMaquina);
+  anadirCENuevo(data: Maquina, tipoMaquina: string): Observable<any> {
+    const formData = new FormData();
 
-  const params = new HttpParams()
-    .set('action', 'anadirCENuevo')
-    .set('debug', '');
+    const { foto, ...dataSinFoto } = data;  // 🚀 Quitamos foto con destructuring
+    const fotoFile = foto as File;
 
-  const url = `${environment.apiBase}/${environment.endpoints.maquina}`;
-  return this.http.post<Maquina[]>(url, formData, { params });
-}
+    formData.append('data', JSON.stringify(dataSinFoto));
+    formData.append('tipoMaquina', tipoMaquina);
+
+    if (fotoFile) {
+      formData.append('foto', fotoFile);  // ⚡ Foto como archivo real
+    }
+
+    const params = new HttpParams()
+      .set('action', 'anadirCENuevo')
+      .set('debug', '');
+
+    const url = `${environment.apiBase}/${environment.endpoints.maquina}`;
+    return this.http.post<any>(url, formData, { params });
+  }
+
 
 
 
