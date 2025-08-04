@@ -5,63 +5,57 @@
     Por favor introduce los datos de la nueva máquina
   </ion-title>
 
-  <form class="mt-10 mb-10">
+  <form class="mt-10 mb-10" (ngSubmit)="crearCaja()" #form="ngForm">
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Modelo</ion-label>
-      <ion-input placeholder="Introduce el modelo" name="modelo" required></ion-input>
+      <ion-label position="stacked">Modelo</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.modelo" name="modelo" required></ion-input>
     </ion-item>
 
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Marca</ion-label>
-      <ion-input placeholder="Introduce el marca" name="marca"></ion-input>
+      <ion-label position="stacked">Marca</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.marca" name="marca" required></ion-input>
     </ion-item>
 
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Serie</ion-label>
-      <ion-input placeholder="Introduce el serie" name="serie"></ion-input>
+      <ion-label position="stacked">Serie</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.serie" name="serie"></ion-input>
     </ion-item>
 
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">Foto</ion-label>
-      <ion-input placeholder="Introduce el foto" name="foto"></ion-input>
+      <ion-label position="stacked">Foto</ion-label>
+      <input type="file" (change)="onFotoSeleccionada($event)" accept=".jpg,.jpeg,.png" />
     </ion-item>
 
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">URL_hidraulico</ion-label>
-      <ion-input placeholder="Introduce el URL hidraulico" name="URL_hidraulico"></ion-input>
+      <ion-label position="stacked">URL hidráulico</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_hidraulico" name="URL_hidraulico"></ion-input>
     </ion-item>
 
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">URL_electrica</ion-label>
-      <ion-input placeholder="Introduce el URL electrica" name="URL_electrica"></ion-input>
+      <ion-label position="stacked">URL eléctrica</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_electrica" name="URL_electrica"></ion-input>
     </ion-item>
 
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">URL_tecnico</ion-label>
-      <ion-input placeholder="Introduce el URL tecnico" name="URL_tecnico"></ion-input>
+      <ion-label position="stacked">URL técnico</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_tecnico" name="URL_tecnico"></ion-input>
     </ion-item>
 
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">URL_recambio</ion-label>
-      <ion-input placeholder="Introduce el URL recambio" name="URL_recambio"></ion-input>
+      <ion-label position="stacked">URL recambio</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_recambio" name="URL_recambio"></ion-input>
     </ion-item>
 
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">URL_operario</ion-label>
-      <ion-input placeholder="Introduce el URL operario" name="URL_operario"></ion-input>
+      <ion-label position="stacked">URL operario</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_operario" name="URL_operario"></ion-input>
     </ion-item>
 
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">URL_dysplay</ion-label>
-      <ion-input placeholder="Introduce el URL dysplay" name="URL_dysplay"></ion-input>
-    </ion-item>
-
-    <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73; padding-bottom: 8px; font-size: 20px;">CE</ion-label>
-      <ion-input placeholder="Introduce el CE" name="CE"></ion-input>
+      <ion-label position="stacked">URL display</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_dysplay" name="URL_dysplay"></ion-input>
     </ion-item>
 
     <ion-button expand="block" type="submit">Crear Máquina</ion-button>
   </form>
-
 </ion-content>
