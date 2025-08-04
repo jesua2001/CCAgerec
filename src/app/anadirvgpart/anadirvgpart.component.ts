@@ -12,7 +12,9 @@ import {
   IonInput,
   IonItem,
   IonLabel,
-  IonTitle
+  IonTitle,
+  IonSelect,
+  IonSelectOption
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -27,6 +29,8 @@ import {
     IonItem,
     IonLabel,
     IonTitle,
+    IonSelect,
+    IonSelectOption,
     FormsModule,
     CommonModule
   ]
@@ -34,6 +38,7 @@ import {
 export class AnadirvgpartComponent implements OnInit {
   nuevaMaquina: Partial<Maquina> = {};
   fotoArchivo: File | null = null;
+  tipoMaquina: string = ''; // Se llena desde el ion-select
 
   constructor(
     private maquinaService: MaquinaService,
@@ -53,41 +58,49 @@ export class AnadirvgpartComponent implements OnInit {
   }
 
   crearCaja() {
-  if (!this.nuevaMaquina.modelo || !this.nuevaMaquina.marca) {
-    this.mostrarToast('Debes completar al menos modelo y marca');
-    return;
+    if (!this.tipoMaquina) {
+      this.mostrarToast('Debes seleccionar el tipo de máquina');
+      return;
+    }
+
+    if (!this.nuevaMaquina.modelo || !this.nuevaMaquina.marca) {
+      this.mostrarToast('Debes completar al menos modelo y marca');
+      return;
+    }
+
+    const maquina: any = {
+      modelo: this.nuevaMaquina.modelo || '',
+      marca: this.nuevaMaquina.marca || '',
+      serie: this.nuevaMaquina.serie || '',
+      foto: this.fotoArchivo || new Blob(),
+      URL_hidraulico: this.nuevaMaquina.URL_hidraulico || '',
+      URL_electrica: this.nuevaMaquina.URL_electrica || '',
+      URL_tecnico: this.nuevaMaquina.URL_tecnico || '',
+      URL_recambio: this.nuevaMaquina.URL_recambio || '',
+      URL_operario: this.nuevaMaquina.URL_operario || '',
+      URL_dysplay: this.nuevaMaquina.URL_dysplay || '',
+      CE: 0 // Se genera en backend
+    };
+
+    this.maquinaService.anadirCENuevo(maquina, this.tipoMaquina).subscribe({
+      next: () => {
+        this.mostrarToast('Máquina con CE nuevo creada correctamente', 'success');
+        this.nuevaMaquina = {};
+        this.fotoArchivo = null;
+        this.tipoMaquina = '';
+      },
+      error: () => {
+        this.mostrarToast('Debes completar al menos modelo y marca', 'danger');
+      }
+    });
   }
 
-  const maquina: any = {
-    modelo: this.nuevaMaquina.modelo || '',
-    marca: this.nuevaMaquina.marca || '',
-    serie: this.nuevaMaquina.serie || '',
-    foto: this.fotoArchivo || new Blob(),  // Ojo: la clave
-    URL_hidraulico: this.nuevaMaquina.URL_hidraulico || '',
-    URL_electrica: this.nuevaMaquina.URL_electrica || '',
-    URL_tecnico: this.nuevaMaquina.URL_tecnico || '',
-    URL_recambio: this.nuevaMaquina.URL_recambio || '',
-    URL_operario: this.nuevaMaquina.URL_operario || '',
-    URL_dysplay: this.nuevaMaquina.URL_dysplay || '',
-    CE: 0, // El backend genera el CE nuevo
-  };
-
-  this.maquinaService.anadirCENuevo(maquina).subscribe({
-    next: () => {
-      this.mostrarToast('Máquina con CE nuevo creada correctamente');
-    },
-    error: () => {
-      this.mostrarToast('Error al crear la nueva máquina');
-    }
-  });
-}
-
-  async mostrarToast(mensaje: string) {
+  async mostrarToast(mensaje: string, color: 'success' | 'danger' = 'danger') {
     const toast = await this.toastController.create({
       message: mensaje,
       duration: 3000,
       position: 'top',
-      color: 'danger'
+      color: color
     });
     await toast.present();
   }

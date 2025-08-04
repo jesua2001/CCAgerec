@@ -28,17 +28,19 @@ export class MaquinaService {
     return this.http.post<Maquina[]>(url, formData, { params });
   }
 
-  anadirNuevaMaquinaConCEEquivalente(data: Maquina): Observable<Maquina[]> {
-    const formData = new FormData();
-    formData.append('data', JSON.stringify(data));  // Backend espera esto
+  anadirNuevaMaquinaConCEEquivalente(data: Maquina, tipoMaquina: string): Observable<Maquina[]> {
+  const formData = new FormData();
+  formData.append('data', JSON.stringify(data));
+  formData.append('tipoMaquina', tipoMaquina); // 👈 esto es lo nuevo
 
-    const params = new HttpParams()
-      .set('action', 'anadirMaquinaCEEquivalente')
-      .set('debug', '');
+  const params = new HttpParams()
+    .set('action', 'anadirMaquinaCEEquivalente')
+    .set('debug', '');
 
-    const url = `${environment.apiBase}/${environment.endpoints.maquina}`;
-    return this.http.post<Maquina[]>(url, formData, { params });
+  const url = `${environment.apiBase}/${environment.endpoints.maquina}`;
+  return this.http.post<Maquina[]>(url, formData, { params });
   }
+
 
   obtenerCE(modelo: string, marca: string, numeroSerie: string): Observable<Maquina[]> {
     const formData = new FormData();
@@ -54,9 +56,10 @@ export class MaquinaService {
     return this.http.post<Maquina[]>(url, formData, { params });
   }
 
-  anadirCENuevo(data: Maquina): Observable<Maquina[]> {
+  anadirCENuevo(data: Maquina, tipoMaquina: string): Observable<Maquina[]> {
   const formData = new FormData();
   formData.append('data', JSON.stringify(data));
+  formData.append('tipoMaquina', tipoMaquina);
 
   const params = new HttpParams()
     .set('action', 'anadirCENuevo')
@@ -65,6 +68,7 @@ export class MaquinaService {
   const url = `${environment.apiBase}/${environment.endpoints.maquina}`;
   return this.http.post<Maquina[]>(url, formData, { params });
 }
+
 
 
 }

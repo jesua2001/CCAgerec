@@ -13,8 +13,10 @@ import {
   IonInput,
   IonItem,
   IonLabel,
-  IonTitle
+  IonSelect,           // 👈 FALTA ESTO
+  IonSelectOption      // 👈 FALTA ESTO
 } from '@ionic/angular/standalone';
+
 
 @Component({
   selector: 'app-anadirvgpartceexistente',
@@ -27,6 +29,8 @@ import {
     IonInput,
     IonItem,
     IonLabel,
+    IonSelect,           // 👈 Añadir aquí
+    IonSelectOption,     // 👈 Añadir aquí
     FormsModule,
     CommonModule
   ]
@@ -35,7 +39,8 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
   modelo: string = '';
   marcaBusqueda: string = '';
   ceEncontrado: number | null = null;
-  nuevaMaquina: Partial<Maquina> = {};  // Usamos Partial para poder asignar propiedades una a una
+  tipoMaquina: string = ''; // 👈 Añadido
+  nuevaMaquina: Partial<Maquina> = {};
   fotoArchivo: File | null = null;
 
   constructor(
@@ -88,13 +93,17 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
       }, 1500);
       return;
     }
-    console.log('nuevamaquina ', this.nuevaMaquina)
-    // Construir el objeto de datos que espera el backend
+
+    if (!this.tipoMaquina) {
+      this.mostrarToast('Debes seleccionar el tipo de máquina');
+      return;
+    }
+
     const data: any = {
       modelo: this.nuevaMaquina.modelo || '',
       marca: this.nuevaMaquina.marca || '',
       serie: this.nuevaMaquina.serie || '',
-      foto: this.fotoArchivo || new Blob(),  // Ojo: la clave
+      foto: this.fotoArchivo || new Blob(),
       URL_hidraulico: this.nuevaMaquina.URL_hidraulico || '',
       URL_electrica: this.nuevaMaquina.URL_electrica || '',
       URL_tecnico: this.nuevaMaquina.URL_tecnico || '',
@@ -104,26 +113,24 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
       CE: this.ceEncontrado
     };
 
-
     this.maquinaService
-      .anadirNuevaMaquinaConCEEquivalente(data)
+      .anadirNuevaMaquinaConCEEquivalente(data, this.tipoMaquina) // 👈 tipoMaquina enviado
       .subscribe({
         next: () => {
-          this.mostrarToast('Máquina creada con CE existente');
+          this.mostrarToast('Máquina creada con CE existente', 'success');
         },
         error: () => {
-          this.mostrarToast('Error al crear la máquina');
+          this.mostrarToast('Error al crear la máquina', 'danger');
         }
       });
   }
 
-
-  async mostrarToast(mensaje: string) {
+  async mostrarToast(mensaje: string, color: 'success' | 'danger' = 'danger') {
     const toast = await this.toastController.create({
       message: mensaje,
       duration: 3000,
       position: 'top',
-      color: 'danger'
+      color: color
     });
     await toast.present();
   }
