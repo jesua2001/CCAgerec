@@ -37,7 +37,7 @@ export class MaquinaService {
       .set('debug', '');
 
     const url = `${environment.apiBase}/${environment.endpoints.maquina}`;
-    return this.http.post<any>(url, formData, { params });
+    return this.http.post<Maquina[]>(url, formData, { params });
   }
 
   obtenerCE(modelo: string, marca: string, numeroSerie: string): Observable<Maquina[]> {
@@ -53,5 +53,18 @@ export class MaquinaService {
     const url = `${environment.apiBase}/${environment.endpoints.maquina}`;
     return this.http.post<Maquina[]>(url, formData, { params });
   }
+
+  anadirCENuevo(data: Maquina): Observable<Maquina[]> {
+  const formData = new FormData();
+  formData.append('data', JSON.stringify(data));
+
+  const params = new HttpParams()
+    .set('action', 'anadirCENuevo')
+    .set('debug', '');
+
+  const url = `${environment.apiBase}/${environment.endpoints.maquina}`;
+  return this.http.post<Maquina[]>(url, formData, { params });
+}
+
 
 }
