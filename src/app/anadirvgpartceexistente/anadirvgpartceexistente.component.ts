@@ -94,13 +94,14 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
       modelo: this.nuevaMaquina.modelo || '',
       marca: this.nuevaMaquina.marca || '',
       serie: this.nuevaMaquina.serie || '',
-      CE: this.ceEncontrado,
+      foto: this.fotoArchivo || new Blob(),  // Ojo: la clave
       URL_hidraulico: this.nuevaMaquina.URL_hidraulico || '',
       URL_electrica: this.nuevaMaquina.URL_electrica || '',
       URL_tecnico: this.nuevaMaquina.URL_tecnico || '',
       URL_recambio: this.nuevaMaquina.URL_recambio || '',
       URL_operario: this.nuevaMaquina.URL_operario || '',
-      URL_dysplay: this.nuevaMaquina.URL_dysplay || ''
+      URL_dysplay: this.nuevaMaquina.URL_dysplay || '',
+      CE: this.ceEncontrado
     };
 
 
