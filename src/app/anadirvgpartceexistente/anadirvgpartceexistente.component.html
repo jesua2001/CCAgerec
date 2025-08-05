@@ -12,6 +12,23 @@
       <ion-label position="stacked" style="color: #01BF73;">Marca CE existente</ion-label>
       <ion-input placeholder="Introduce la marca" [(ngModel)]="marcaBusqueda" name="marcaBusqueda" required></ion-input>
     </ion-item>
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">Marca CE Serie</ion-label>
+      <ion-input placeholder="Introduce la marca" [(ngModel)]="serieBusqueda" name="marcaBusqueda" required></ion-input>
+    </ion-item>
+    <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">Tipo de máquina</ion-label>
+      <ion-select [(ngModel)]="tipoMaquina" name="tipoMaquina" placeholder="Selecciona el tipo" required>
+        <ion-select-option value="apiladores">Apiladores</ion-select-option>
+        <ion-select-option value="carretillas_diesel">Carretillas Diésel</ion-select-option>
+        <ion-select-option value="carretillas_electricas">Carretillas Eléctricas</ion-select-option>
+        <ion-select-option value="carretillas_gasolina">Carretillas Gasolina</ion-select-option>
+        <ion-select-option value="recogepedidos">Recogepedidos</ion-select-option>
+        <ion-select-option value="retractil">Retráctil</ion-select-option>
+        <ion-select-option value="todo_terreno">Todo Terreno</ion-select-option>
+        <ion-select-option value="transpaleta_electrica">Transpaleta Eléctrica</ion-select-option>
+      </ion-select>
+    </ion-item>
 
     <ion-button expand="block" type="submit">Buscar CE</ion-button>
   </form>

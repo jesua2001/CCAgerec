@@ -38,10 +38,12 @@ import {
 export class AnadirvgpartceexistenteComponent implements OnInit {
   modelo: string = '';
   marcaBusqueda: string = '';
+  serieBusqueda: string = '';
   ceEncontrado: number | null = null;
   tipoMaquina: string = ''; // 👈 Añadido
   nuevaMaquina: Partial<Maquina> = {};
-  fotoArchivo: File | null = null;
+  urlFoto: string | null = null;
+  previewFoto: string | ArrayBuffer | null = null;
 
   constructor(
     private maquinaService: MaquinaService,
@@ -55,20 +57,27 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
     const archivo: File = event.target.files[0];
     const tiposValidos = ['image/jpeg', 'image/jpg', 'image/png'];
     if (archivo && tiposValidos.includes(archivo.type)) {
-      this.fotoArchivo = archivo;
+      this.nuevaMaquina.foto = archivo;
+
+      // Leer el archivo para vista previa
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewFoto = reader.result;
+      };
+      reader.readAsDataURL(archivo);
     } else {
-      this.mostrarToast('Formato no válido. Solo se aceptan JPG, JPEG y PNG');
+      this.mostrarToast('Formato no válido. Solo JPG, JPEG y PNG');
     }
   }
 
   buscarCEExistente() {
     if (!this.modelo || !this.marcaBusqueda) {
-      this.mostrarToast('Debes introducir modelo y marca');
+      this.mostrarToast('Debes introducir modelo , marca o serie si es necesario');
       return;
     }
 
     this.maquinaService
-      .obtenerCE(this.modelo, this.marcaBusqueda, this.nuevaMaquina.serie ?? '')
+      .obtenerCE(this.modelo, this.marcaBusqueda, this.nuevaMaquina.serie ?? '', this.tipoMaquina)
       .subscribe({
         next: (res) => {
           if (!res || res.length === 0) {
@@ -103,7 +112,7 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
       modelo: this.nuevaMaquina.modelo || '',
       marca: this.nuevaMaquina.marca || '',
       serie: this.nuevaMaquina.serie || '',
-      foto: this.fotoArchivo || new Blob(),
+      foto: this.nuevaMaquina.foto || new Blob(),
       URL_hidraulico: this.nuevaMaquina.URL_hidraulico || '',
       URL_electrica: this.nuevaMaquina.URL_electrica || '',
       URL_tecnico: this.nuevaMaquina.URL_tecnico || '',
@@ -116,7 +125,10 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
     this.maquinaService
       .anadirNuevaMaquinaConCEEquivalente(data, this.tipoMaquina) // 👈 tipoMaquina enviado
       .subscribe({
-        next: () => {
+        next: (res:any) => {
+          if (res.foto) {
+            this.urlFoto = `http://localhost:8000/uploads/${res.foto}`;
+          }
           this.mostrarToast('Máquina creada con CE existente', 'success');
         },
         error: () => {

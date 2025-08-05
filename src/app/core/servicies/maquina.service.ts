@@ -43,11 +43,12 @@ export class MaquinaService {
   }
 
 
-  obtenerCE(modelo: string, marca: string, numeroSerie: string): Observable<Maquina[]> {
+  obtenerCE(modelo: string, marca: string, numeroSerie: string, tipoMaquina:string): Observable<Maquina[]> {
     const formData = new FormData();
-    formData.append('MODELO', modelo);
-    formData.append('MARCA', marca);
-    formData.append('SERIE', numeroSerie);
+    formData.append('modelo', modelo);
+    formData.append('marca', marca);
+    formData.append('serie', numeroSerie);
+    formData.append('tipoMaquina', tipoMaquina);
 
     const params = new HttpParams()
       .set('action', 'obtenerCE')
