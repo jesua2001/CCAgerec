@@ -22,6 +22,20 @@
     ">
       <h2 style="text-align: center; margin-bottom: 24px; font-size: 24px; font-weight: 600;">Cruces de Referencia</h2>
 
+      <ion-item style="margin-bottom: 16px;">
+      <ion-label position="stacked">Tipo de máquina</ion-label>
+      <ion-select [(ngModel)]="tipoMaquina" name="tipoMaquina" placeholder="Selecciona el tipo" required>
+        <ion-select-option value="apiladores">Apiladores</ion-select-option>
+        <ion-select-option value="carretillas_diesel">Carretillas Diésel</ion-select-option>
+        <ion-select-option value="carretillas_electricas">Carretillas Eléctricas</ion-select-option>
+        <ion-select-option value="carretillas_gasolina">Carretillas Gasolina</ion-select-option>
+        <ion-select-option value="recogepedidos">Recogepedidos</ion-select-option>
+        <ion-select-option value="retractil">Retráctil</ion-select-option>
+        <ion-select-option value="todo_terreno">Todo Terreno</ion-select-option>
+        <ion-select-option value="transpaleta_electrica">Transpaleta Eléctrica</ion-select-option>
+      </ion-select>
+      </ion-item>
+
       <ion-item>
         <ion-label position="stacked">Modelo</ion-label>
         <ion-input [(ngModel)] = "modelo" placeholder="Introduce el modelo"></ion-input>
