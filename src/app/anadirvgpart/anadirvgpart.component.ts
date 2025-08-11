@@ -62,7 +62,7 @@ export class AnadirvgpartComponent implements OnInit {
       };
       reader.readAsDataURL(archivo);
     } else {
-      this.mostrarToast('Formato no válido. Solo JPG, JPEG y PNG');
+      this.mostrarToast('Formato no válido. Solo JPG, JPEG y PNG', 'danger');
     }
     }
   private clearFileInput() {
@@ -78,12 +78,12 @@ export class AnadirvgpartComponent implements OnInit {
 
     crearCaja(form: NgForm) {
       if (!this.tipoMaquina) {
-        this.mostrarToast('Debes seleccionar el tipo de máquina');
+        this.mostrarToast('Debes seleccionar el tipo de máquina', 'danger');
         return;
       }
 
       if (!this.nuevaMaquina.modelo || !this.nuevaMaquina.marca) {
-        this.mostrarToast('Debes completar al menos modelo y marca');
+        this.mostrarToast('Debes completar al menos modelo y marca', 'danger');
         return;
       }
 
@@ -92,14 +92,16 @@ export class AnadirvgpartComponent implements OnInit {
         marca: this.nuevaMaquina.marca || '',
         serie: this.nuevaMaquina.serie || '',
         foto: this.nuevaMaquina.foto || new Blob(),
+        motor: this.nuevaMaquina.motor || '',
         URL_hidraulico: this.nuevaMaquina.URL_hidraulico || '',
         URL_electrica: this.nuevaMaquina.URL_electrica || '',
         URL_tecnico: this.nuevaMaquina.URL_tecnico || '',
         URL_recambio: this.nuevaMaquina.URL_recambio || '',
         URL_operario: this.nuevaMaquina.URL_operario || '',
-        URL_dysplay: this.nuevaMaquina.URL_dysplay || '',
-        CE: 0 // Se genera en backend
+        URL_display: this.nuevaMaquina.URL_display || '',
+        CE: 0
       };
+
 
       this.maquinaService.anadirCENuevo(maquina, this.tipoMaquina).subscribe({
         next: (res) => {
