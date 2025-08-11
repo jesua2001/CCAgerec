@@ -65,8 +65,10 @@
     </ion-item>
 
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73;">Foto</ion-label>
-      <input type="file" (change)="onFotoSeleccionada($event)" accept=".jpg,.jpeg,.png">
+      <input type="file" #fileInput (change)="onFotoSeleccionada($event)" accept="image/png, image/jpeg" />
+      <div *ngIf="previewFoto" style="text-align:center; margin: 10px 0;">
+        <img [src]="previewFoto" alt="Vista previa foto" style="max-width: 100%; height: auto; border-radius: 8px;">
+      </div>
     </ion-item>
 
     <ion-item>
