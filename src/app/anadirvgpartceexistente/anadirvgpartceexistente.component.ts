@@ -67,13 +67,13 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
       };
       reader.readAsDataURL(archivo);
     } else {
-      this.mostrarToast('Formato no válido. Solo JPG, JPEG y PNG');
+      this.mostrarToast('Formato no válido. Solo JPG, JPEG y PNG', 'danger');
     }
   }
 
   buscarCEExistente() {
     if (!this.modelo || !this.marcaBusqueda) {
-      this.mostrarToast('Debes introducir modelo , marca o serie si es necesario');
+      this.mostrarToast('Debes introducir modelo , marca o serie si es necesario', 'danger');
       return;
     }
 
@@ -86,11 +86,11 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
             this.crearMaquinaConCE();
           } else {
             this.ceEncontrado = res[0].CE;
-            this.mostrarToast('CE encontrado. Rellena los datos de la nueva máquina');
+            this.mostrarToast('CE encontrado. Rellena los datos de la nueva máquina', 'success');
           }
         },
         error: () => {
-          this.mostrarToast('Error al buscar el CE');
+          this.mostrarToast('Error al buscar el CE', 'danger');
         },
       });
   }
@@ -106,7 +106,7 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
   }
   crearMaquinaConCE() {
     if (!this.ceEncontrado) {
-      this.mostrarToast('No se ha encontrado CE. Redirigiendo a creación de CE nuevo...');
+      this.mostrarToast('No se ha encontrado CE. Redirigiendo a creación de CE nuevo...', 'danger');
       setTimeout(() => {
         this.router.navigate(['/anadircenuevo']);
       }, 1500);
@@ -114,7 +114,7 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
     }
 
     if (!this.tipoMaquina) {
-      this.mostrarToast('Debes seleccionar el tipo de máquina');
+      this.mostrarToast('Debes seleccionar el tipo de máquina', 'danger');
       return;
     }
 
@@ -123,17 +123,19 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
       marca: this.nuevaMaquina.marca || '',
       serie: this.nuevaMaquina.serie || '',
       foto: this.nuevaMaquina.foto || new Blob(),
+      motor: this.nuevaMaquina.motor || '',
       URL_hidraulico: this.nuevaMaquina.URL_hidraulico || '',
       URL_electrica: this.nuevaMaquina.URL_electrica || '',
       URL_tecnico: this.nuevaMaquina.URL_tecnico || '',
       URL_recambio: this.nuevaMaquina.URL_recambio || '',
       URL_operario: this.nuevaMaquina.URL_operario || '',
-      URL_dysplay: this.nuevaMaquina.URL_dysplay || '',
+      URL_display: this.nuevaMaquina.URL_display || '',
       CE: this.ceEncontrado
     };
 
+
     this.maquinaService
-      .anadirNuevaMaquinaConCEEquivalente(data, this.tipoMaquina) // 👈 tipoMaquina enviado
+      .anadirNuevaMaquinaConCEEquivalente(data, this.tipoMaquina)
       .subscribe({
         next: (res:any) => {
           if (res.foto) {
