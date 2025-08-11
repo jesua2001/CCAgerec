@@ -43,12 +43,12 @@
 
       <ion-item>
         <ion-label position="stacked">Marca</ion-label>
-        <ion-input [(ngModel)]= "marca" placeholder = "Introduce la marca"></ion-input>
+        <ion-input [(ngModel)]= "marca" placeholder ="Introduce la marca"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Serie</ion-label>
-        <ion-input [(ngModel)]= "numeroSerie" placeholder = "Introduce el número de serie"></ion-input>
+        <ion-input [(ngModel)]= "numeroSerie" placeholder ="Introduce el número de serie"></ion-input>
       </ion-item>
 
       <ion-button
@@ -82,7 +82,10 @@
             <div style="margin-bottom: 8px;">
               <strong>Modelo:</strong> {{maquina.modelo}}<br>
               <strong>Marca:</strong> {{maquina.marca}}<br>
-              <strong>Serie:</strong> {{maquina.serie}}
+              <strong>Serie:</strong> {{maquina.serie}}<br>
+              <div *ngIf="maquina.motor">
+                <strong>Motor:</strong> {{maquina.motor}}<br>
+              </div>
             </div>
 
             <!-- Segunda parte: URLs -->
@@ -93,12 +96,11 @@
               <strong>URL_tecnico:</strong> {{maquina.URL_tecnico}}<br>
               <strong>URL_recambio:</strong> {{maquina.URL_recambio}}<br>
               <strong>URL_operario:</strong> {{maquina.URL_operario}}<br>
-              <strong>URL_dysplay:</strong> {{maquina.URL_dysplay}}
+              <strong>URL_display:</strong> {{maquina.URL_display}}
             </div>
           </li>
         </ul>
       </div>
-
 
     </div>
   </div>
