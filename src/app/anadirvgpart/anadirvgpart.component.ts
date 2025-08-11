@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { MaquinaService } from '../core/servicies/maquina.service';
 import { Maquina } from '@models/maquina.model';
 import { ToastController } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, NgForm} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 
@@ -40,6 +40,7 @@ export class AnadirvgpartComponent implements OnInit {
   tipoMaquina: string = ''; // Se llena desde el ion-select
   urlFoto: string | null = null;
   previewFoto: string | ArrayBuffer | null = null;
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   constructor(
     private maquinaService: MaquinaService,
@@ -64,8 +65,18 @@ export class AnadirvgpartComponent implements OnInit {
       this.mostrarToast('Formato no válido. Solo JPG, JPEG y PNG');
     }
     }
+  private clearFileInput() {
+    // limpia el input nativo
+    if (this.fileInput?.nativeElement) {
+      this.fileInput.nativeElement.value = '';
+    }
+    // limpia modelo y preview
+    delete this.nuevaMaquina.foto;
+    this.previewFoto = null;
+    this.urlFoto = null;
+  }
 
-    crearCaja() {
+    crearCaja(form: NgForm) {
       if (!this.tipoMaquina) {
         this.mostrarToast('Debes seleccionar el tipo de máquina');
         return;
@@ -96,6 +107,8 @@ export class AnadirvgpartComponent implements OnInit {
             this.urlFoto = `http://localhost:8000/uploads/${res.foto}`;
           }
           this.mostrarToast('Máquina con CE nuevo creada correctamente', 'success');
+          form.resetForm();
+          this.clearFileInput();
           this.nuevaMaquina = {};
           this.tipoMaquina = '';
         },
