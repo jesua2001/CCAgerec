@@ -5,7 +5,7 @@
     Por favor introduce los datos de la nueva máquina
   </ion-title>
 
-  <form class="mt-10 mb-10" (ngSubmit)="crearCaja()" #form="ngForm">
+  <form class="mt-10 mb-10" (ngSubmit)="crearCaja(form)" #form="ngForm">
     <ion-item style="margin-bottom: 16px;">
       <ion-label position="stacked" style="color: #01BF73;">Tipo de máquina</ion-label>
       <ion-select [(ngModel)]="tipoMaquina" name="tipoMaquina" placeholder="Selecciona el tipo" required>
@@ -37,7 +37,7 @@
 
     <ion-item style="margin-bottom: 16px;">
       <ion-label position="stacked">Foto</ion-label>
-      <input type="file" (change)="onFotoSeleccionada($event)" accept="image/png, image/jpeg" />
+      <input type="file" #fileInput (change)="onFotoSeleccionada($event)" accept="image/png, image/jpeg" />
       <div *ngIf="previewFoto" style="text-align:center; margin: 10px 0;">
         <img [src]="previewFoto" alt="Vista previa foto" style="max-width: 100%; height: auto; border-radius: 8px;">
       </div>
