@@ -13,7 +13,7 @@
       <ion-input placeholder="Introduce la marca" [(ngModel)]="marcaBusqueda" name="marcaBusqueda" required></ion-input>
     </ion-item>
     <ion-item style="margin-bottom: 16px;">
-      <ion-label position="stacked" style="color: #01BF73;">Marca CE Serie</ion-label>
+      <ion-label position="stacked" style="color: #01BF73;">Serie CE Existente</ion-label>
       <ion-input placeholder="Introduce la marca" [(ngModel)]="serieBusqueda" name="marcaBusqueda" required></ion-input>
     </ion-item>
     <ion-item style="margin-bottom: 16px;">
@@ -71,34 +71,39 @@
       </div>
     </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">URL hidráulico</ion-label>
-      <ion-input [(ngModel)]="nuevaMaquina.URL_hidraulico" name="URL_hidraulico"></ion-input>
+    <ion-item *ngIf="tipoMaquina === 'carretillas_diesel'" style="margin-bottom: 16px;">
+      <ion-label position="stacked" style="color: #01BF73;">Motor</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.motor" placeholder="Introduce el motor" name="motor"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">URL eléctrica</ion-label>
-      <ion-input [(ngModel)]="nuevaMaquina.URL_electrica" name="URL_electrica"></ion-input>
+      <ion-label position="stacked" style="color: #01BF73;">URL hidráulico</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_hidraulico" placeholder="Introduce la URL hidráulico" name="URL_hidraulico"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">URL técnico</ion-label>
-      <ion-input [(ngModel)]="nuevaMaquina.URL_tecnico" name="URL_tecnico"></ion-input>
+      <ion-label position="stacked" style="color: #01BF73;">URL eléctrica</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_electrica" placeholder="Introduce la URL eléctrica" name="URL_electrica"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">URL recambio</ion-label>
-      <ion-input [(ngModel)]="nuevaMaquina.URL_recambio" name="URL_recambio"></ion-input>
+      <ion-label position="stacked" style="color: #01BF73;">URL técnico</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_tecnico" placeholder="Introduce la URL técnico" name="URL_tecnico"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">URL operario</ion-label>
-      <ion-input [(ngModel)]="nuevaMaquina.URL_operario" name="URL_operario"></ion-input>
+      <ion-label position="stacked" style="color: #01BF73;">URL recambio</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_recambio" placeholder="Introduce la URL recambio" name="URL_recambio"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">URL display</ion-label>
-      <ion-input [(ngModel)]="nuevaMaquina.URL_dysplay" name="URL_dysplay"></ion-input>
+      <ion-label position="stacked" style="color: #01BF73;">URL operario</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_operario" placeholder="Introduce la URL operario" name="URL_operario"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" style="color: #01BF73;">URL display</ion-label>
+      <ion-input [(ngModel)]="nuevaMaquina.URL_display" placeholder="Introduce la URL display" name="URL_display"></ion-input>
     </ion-item>
 
     <ion-button expand="block" type="submit">Crear Máquina</ion-button>
