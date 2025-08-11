@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { MaquinaService } from '../core/servicies/maquina.service';
 import { Maquina } from '@models/maquina.model';
 import { ToastController } from '@ionic/angular';
@@ -44,6 +44,7 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
   nuevaMaquina: Partial<Maquina> = {};
   urlFoto: string | null = null;
   previewFoto: string | ArrayBuffer | null = null;
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   constructor(
     private maquinaService: MaquinaService,
@@ -93,7 +94,16 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
         },
       });
   }
-
+  private clearFileInput() {
+    // limpia el input nativo
+    if (this.fileInput?.nativeElement) {
+      this.fileInput.nativeElement.value = '';
+    }
+    // limpia modelo y preview
+    delete this.nuevaMaquina.foto;
+    this.previewFoto = null;
+    this.urlFoto = null;
+  }
   crearMaquinaConCE() {
     if (!this.ceEncontrado) {
       this.mostrarToast('No se ha encontrado CE. Redirigiendo a creación de CE nuevo...');
