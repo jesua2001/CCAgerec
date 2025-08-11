@@ -102,6 +102,11 @@ export class AnadirvgpartComponent implements OnInit {
         CE: 0
       };
 
+      // Solo para carretilla diésel, incluye motor
+      if (this.tipoMaquina === 'carretillas_diesel') {
+        maquina.motor = this.nuevaMaquina.motor || '';
+      }
+
 
       this.maquinaService.anadirCENuevo(maquina, this.tipoMaquina).subscribe({
         next: (res) => {
