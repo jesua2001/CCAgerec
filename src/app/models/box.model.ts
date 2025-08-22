@@ -25,5 +25,6 @@ export interface BoxAnadir {
   localizacion?: string;
   pinteltonika?: string;
   datos?: string;
+  password?: string;
 }
 
