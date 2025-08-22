@@ -57,7 +57,7 @@ export class AnadirboxComponent implements OnInit {
     this.cajaService.crearCaja(this.nuevaCaja).subscribe({
       next: () => {
         this.mensaje = 'Caja creada correctamente';
-        this.nuevaCaja = { certificado: '' };
+        this.nuevaCaja = { certificado: '', password: '' };
         this.obtenerCajas(); // Recargar lista
       },
       error: () => this.mensaje = 'Error al crear la caja'
