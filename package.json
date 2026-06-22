@@ -10,7 +10,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "clean": "rimraf www"
+    "clean": "rimraf www",
+    "deploy": "npm run build && wrangler deploy",
+    "preview": "npm run build && wrangler dev"
   },
   "private": true,
   "dependencies": {
@@ -65,7 +67,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "rimraf": "^6.0.1",
-    "typescript": "~5.8.0"
+    "typescript": "~5.8.0",
+    "wrangler": "^4.103.0"
   },
   "description": "An Ionic project",
   "budgets": [
