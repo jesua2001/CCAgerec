@@ -15,6 +15,7 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule, NgForOf, NgIf } from '@angular/common';
 import { ToastController } from "@ionic/angular";
 import { Router } from '@angular/router';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-homevgpart',
@@ -37,6 +38,7 @@ import { Router } from '@angular/router';
 })
 export class HomevgpartComponent implements OnInit {
 
+  apiBase = environment.apiBase;
   modelo: string = '';
   marca: string = '';
   numeroSerie: string = '';

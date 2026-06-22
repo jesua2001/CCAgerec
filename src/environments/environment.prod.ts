@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiBase: 'https://agerecapp.infinityfree.me/backendagerec',
+  apiBase: 'https://ccbackendagerec.jesusbetico8.workers.dev',
   endpoints: {
     user: 'UserAction.php',
     caja: 'Ccobtenercaja.php',
