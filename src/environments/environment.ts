@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBase: 'https://agerecapp.finode.com:8433/backendagerec',
+  apiBase: 'https://agerecapp.infinityfree.me/backendagerec',
   endpoints: {
     user: 'UserAction.php',
     caja: 'Ccobtenercaja.php',
