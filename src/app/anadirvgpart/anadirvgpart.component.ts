@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 import {FormsModule, NgForm} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
+import { environment } from '@environments/environment';
 
 import {
   IonButton,
@@ -111,7 +112,7 @@ export class AnadirvgpartComponent implements OnInit {
       this.maquinaService.anadirCENuevo(maquina, this.tipoMaquina).subscribe({
         next: (res) => {
           if (res.foto) {
-            this.urlFoto = `http://localhost:8000/uploads/${res.foto}`;
+            this.urlFoto = `${environment.apiBase}/uploads/${res.foto}`;
           }
           this.mostrarToast('Máquina con CE nuevo creada correctamente', 'success');
           form.resetForm();

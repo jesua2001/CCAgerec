@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { Router } from '@angular/router';
+import { environment } from '@environments/environment';
 
 import {
   IonButton,
@@ -139,7 +140,7 @@ export class AnadirvgpartceexistenteComponent implements OnInit {
       .subscribe({
         next: (res:any) => {
           if (res.foto) {
-            this.urlFoto = `http://localhost:8000/uploads/${res.foto}`;
+            this.urlFoto = `${environment.apiBase}/uploads/${res.foto}`;
           }
           this.mostrarToast('Máquina creada con CE existente', 'success');
         },
