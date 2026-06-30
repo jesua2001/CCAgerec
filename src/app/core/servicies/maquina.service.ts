@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import {Maquina} from "@models/maquina.model";
 import {Injectable} from "@angular/core";
 import {environment} from "@environments/environment";
-import * as url from "node:url";
 
 @Injectable({
   providedIn: 'root'

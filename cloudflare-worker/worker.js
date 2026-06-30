@@ -1,10 +1,8 @@
-// Proxy entre el frontend (GitHub Pages) y el backend en InfinityFree.
-// InfinityFree bloquea las llamadas AJAX cross-origin con un reto anti-bot;
-// este Worker reenvía la petición de servidor a servidor (sin cabeceras de navegador)
-// y añade él mismo las cabeceras CORS en la respuesta.
+// Proxy opcional entre el frontend y el backend.
+// Se mantiene para despliegues antiguos que todavía usen Worker.
 
-const TARGET_ORIGIN = 'https://agerecapp.infinityfree.me/backendagerec';
-const ALLOWED_ORIGIN = 'https://jesua2001.github.io';
+const TARGET_ORIGIN = 'http://agerecapp.finode.com/backendagerec';
+const ALLOWED_ORIGIN = 'http://agerecapp.finode.com';
 
 function corsHeaders() {
   return {
@@ -23,7 +21,6 @@ export default {
     const url = new URL(request.url);
     const targetUrl = TARGET_ORIGIN + url.pathname + url.search;
 
-    // Cabeceras "limpias": sin Origin/Referer/Sec-Fetch-* que delatan que viene de un navegador cross-site.
     const forwardHeaders = new Headers();
     const contentType = request.headers.get('content-type');
     if (contentType) forwardHeaders.set('content-type', contentType);
@@ -40,7 +37,7 @@ export default {
 
     const response = await fetch(targetUrl, init);
     const headers = new Headers(response.headers);
-    Object.entries(corsHeaders()).forEach(([k, v]) => headers.set(k, v));
+    Object.entries(corsHeaders()).forEach(([key, value]) => headers.set(key, value));
 
     return new Response(response.body, { status: response.status, headers });
   },

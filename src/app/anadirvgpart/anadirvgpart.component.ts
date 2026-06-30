@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import { MaquinaService } from '../core/servicies/maquina.service';
 import { Maquina } from '@models/maquina.model';
 import { ToastController } from '@ionic/angular';
@@ -36,7 +36,7 @@ import {
     CommonModule
   ]
 })
-export class AnadirvgpartComponent implements OnInit {
+export class AnadirvgpartComponent {
   nuevaMaquina: Partial<Maquina> = {};
   tipoMaquina: string = ''; // Se llena desde el ion-select
   urlFoto: string | null = null;
@@ -47,8 +47,6 @@ export class AnadirvgpartComponent implements OnInit {
     private maquinaService: MaquinaService,
     private toastController: ToastController
   ) {}
-
-  ngOnInit(): void {}
 
   onFotoSeleccionada(event: any) {
     const archivo: File = event.target.files[0];

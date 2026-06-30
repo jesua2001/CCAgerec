@@ -1,16 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
-import { importProvidersFrom } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { provideHttpClient } from '@angular/common/http'; // ✅ AÑADIR ESTO
 
 import { AppComponent } from './app/app.component';
-import { AppRoutes } from './app/app.routes';
+import { appConfig } from './app/app.config';
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideRouter(AppRoutes),
-    provideHttpClient(), // ✅ REGISTRA HttpClient
-    importProvidersFrom(IonicModule.forRoot())
-  ]
-});
+bootstrapApplication(AppComponent, appConfig);

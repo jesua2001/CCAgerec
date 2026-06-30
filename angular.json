@@ -21,6 +21,11 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               {
+                "glob": ".htaccess",
+                "input": "src",
+                "output": "."
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
@@ -40,6 +45,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/ccagerec/",
               "budgets": [
                 {
                   "type": "initial",
@@ -104,6 +110,11 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
+              {
+                "glob": ".htaccess",
+                "input": "src",
+                "output": "."
+              },
               {
                 "glob": "**/*",
                 "input": "src/assets",

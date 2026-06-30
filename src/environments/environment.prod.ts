@@ -1,10 +1,10 @@
 export const environment = {
-  production: false,
-  apiBase: 'https://ccbackendagerec.jesusbetico8.workers.dev',
+  production: true,
+  apiBase: 'http://agerecapp.finode.com/backendagerec',
   endpoints: {
     user: 'UserAction.php',
     caja: 'Ccobtenercaja.php',
     maquina: 'CruceDeReferencia.php'
   },
-  developerEmail: 'developer@miapp.com' // <-- Cambia este correo si es necesario
+  developerEmail: 'developer@miapp.com'
 };

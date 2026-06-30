@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import {
   IonButton,
@@ -36,7 +36,7 @@ import { environment } from '@environments/environment';
     CommonModule
   ]
 })
-export class HomevgpartComponent implements OnInit {
+export class HomevgpartComponent {
 
   apiBase = environment.apiBase;
   modelo: string = '';
@@ -58,8 +58,6 @@ export class HomevgpartComponent implements OnInit {
   ) {
     this.toastController = ToastController;
   }
-
-  ngOnInit() {}
 
   consultarHomevgparts() {
     if (!this.modelo.trim()) {

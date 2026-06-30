@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import {BoxAnadir, BoxObtener} from "@models/box.model";
 import {Injectable} from "@angular/core";
 import {environment} from "@environments/environment";
-import * as url from "node:url";
 
 @Injectable({
   providedIn: 'root'

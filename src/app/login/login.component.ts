@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   IonButton,
   IonContent,
-  IonHeader, IonImg,
+  IonHeader,
   IonInput,
   IonItem,
   IonLabel,
@@ -28,18 +28,15 @@ import { LoginRequest, LoginResponse } from '@models/user.model';
     IonHeader,
     IonToolbar,
     IonTitle,
-    RouterModule,
-    IonImg
+    RouterModule
   ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   email: string = '';
   password: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
-
-  ngOnInit() { }
 
   onLogin() {
     const loginData: LoginRequest = {
