@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {
   IonButton,
   IonContent,
-  IonHeader,
   IonInput,
   IonItem,
   IonLabel,
   IonList,
   IonText,
-  IonTitle,
-  IonToolbar
+  IonTitle
 } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { BoxService } from '../core/servicies/box.service';
@@ -23,8 +21,6 @@ import {HeaderComponent} from "../header/header.component"; // AÑADE ESTA LÍNE
   standalone: true,
   imports: [
     CommonModule, // AÑADE ESTA LÍNEA AQUÍ
-    IonHeader,
-    IonToolbar,
     IonTitle,
     IonContent,
     IonItem,

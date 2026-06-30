@@ -1,10 +1,11 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = localStorage.getItem('token'); // o donde guardes el token
+  const token = localStorage.getItem('token');
+  const action = req.params.get('action');
 
-  if (!token || req.url.includes('/login.php')) {
-    return next(req); // no añadimos token si no existe o es login
+  if (!token || action === 'loginUser' || action === 'registerUser') {
+    return next(req);
   }
 
   const cloned = req.clone({
